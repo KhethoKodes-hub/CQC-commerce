@@ -381,8 +381,48 @@ textarea.inp{resize:none;}
 <div class="bg-canvas"></div>
 <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 <div id="app" style="position:relative;z-index:1;"></div>
-
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>
+
+  // Import the functions you need from the SDKs you need
+
+import { initializeApp } from "firebase/app";
+
+import { getAnalytics } from "firebase/analytics";
+
+// TODO: Add SDKs for Firebase products that you want to use
+
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyBWBt6Eo_ubJdUAQC6W4hSqIOmPD3GOd1c",
+
+  authDomain: "cqc-demo.firebaseapp.com",
+
+  projectId: "cqc-demo",
+
+  storageBucket: "cqc-demo.firebasestorage.app",
+
+  messagingSenderId: "845132007927",
+
+  appId: "1:845132007927:web:b5bb1f97c9c791d2d186f2",
+
+  measurementId: "G-P0MNP2TH17"
+
+};
+
+// Initialize Firebase
+
+const app = initializeApp(firebaseConfig);
+
+const analytics = getAnalytics(app);
 /* ═══════════════════════════════════════════════════════
    FURNITURE IMAGE POOL (all chairs/desks/furniture only)
 ═══════════════════════════════════════════════════════ */
@@ -434,26 +474,56 @@ const SEED_USERS=[
 /* ═══════════════════════════════════════════════════════
    STORAGE
 ═══════════════════════════════════════════════════════ */
-const S=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d));}catch{return d;}};
-const W=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+
 const getCart=()=>S('cqc_cart',[]);
 const setCart=v=>W('cqc_cart',v);
-const getOrders=()=>S('cqc_orders',[]);
-const setOrders=v=>W('cqc_orders',v);
+
+// ORDERS
+const getOrders = async () => {
+  const snap = await db.collection("orders").get();
+  return snap.docs.map(doc => doc.data());
+};
+
+const addOrder = async (order) => {
+  await db.collection("orders").add(order);
+};
+
 const getUser=()=>S('cqc_user',null);
 const setUser=v=>W('cqc_user',v);
-const getNotifs=()=>S('cqc_notifs',[]);
-const setNotifs=v=>W('cqc_notifs',v);
+// NOTIFICATIONS
+const getNotifs = async () => {
+  const snap = await db.collection("notifs").get();
+  return snap.docs.map(doc => doc.data());
+};
+
+const addNotif = async (notif) => {
+  await db.collection("notifs").add(notif);
+};
+
 const getProds=()=>S('cqc_prods',SEED_PRODUCTS);
 const setProds=v=>W('cqc_prods',v);
 const getPromos=()=>S('cqc_promos',[]);
 const setPromos=v=>W('cqc_promos',v);
-const getSvcs=()=>S('cqc_svcs',[]);
-const setSvcs=v=>W('cqc_svcs',v);
+// SERVICES
+const getSvcs = async () => {
+  const snap = await db.collection("services").get();
+  return snap.docs.map(doc => doc.data());
+};
+
+const addSvc = async (svc) => {
+  await db.collection("services").add(svc);
+};
 const getWL=()=>S('cqc_wl',[]);
 const setWL=v=>W('cqc_wl',v);
-const getRegistered=()=>S('cqc_reg',[]);
-const setRegistered=v=>W('cqc_reg',v);
+// USERS
+const getRegistered = async () => {
+  const snap = await db.collection("users").get();
+  return snap.docs.map(doc => doc.data());
+};
+
+const addUser = async (user) => {
+  await db.collection("users").add(user);
+};
 const getWelcomed=()=>S('cqc_welcomed',[]);
 const setWelcomed=v=>W('cqc_welcomed',v);
 
@@ -496,10 +566,17 @@ function showLiveNotif(title,msg,type='info',icon='🔔'){
 }
 
 /* PUSH NOTIFICATION */
-function pushNotif(email,title,message,type='info',icon='🔔',orderId=null){
-  const n=getNotifs();
-  n.unshift({id:Date.now(),email,title,message,type,icon,orderId,at:new Date().toISOString(),read:false});
-  setNotifs(n);
+async function pushNotif(email,title,message,type='info',icon='🔔',orderId=null){
+  await addNotif({
+  email,
+  title,
+  message,
+  type,
+  icon,
+  orderId,
+  at: new Date().toISOString(),
+  read: false
+});
   const u=getUser();
   if(u&&u.email===email){
     showLiveNotif(title,message,type,icon);
