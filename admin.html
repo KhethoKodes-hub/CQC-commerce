@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<style>
+body{font-family:Arial;margin:0;background:#121212;color:white}
+.header{background:#1f1f1f;padding:15px;text-align:center}
+.container{padding:15px}
+.card{background:#1e1e1e;padding:15px;margin-bottom:10px;border-radius:10px}
+button{padding:8px;border:none;border-radius:6px;margin-top:5px}
+.approve{background:green;color:white}
+.update{background:#0d6efd;color:white}
+textarea{width:100%;margin-top:5px}
+</style>
+</head>
+
+<body>
+<div class="header">Admin Dashboard</div>
+<div class="container" id="app"></div>
+
+<script>
+function getOrders(){return JSON.parse(localStorage.getItem('orders')||'[]');}
+function saveOrders(o){localStorage.setItem('orders',JSON.stringify(o));}
+
+function render(){
+let orders=getOrders();
+let html="<h3>Orders</h3>";
+
+orders.forEach((o,i)=>{
+html+=`<div class='card'>
+<b>${o.product}</b><br>
+R${o.price}<br>
+Status: ${o.status}<br>
+
+<textarea id='msg${i}' placeholder='Add update'></textarea>
+<button class='update' onclick='addUpdate(${i})'>Add Update</button>
+`;
+
+if(o.status==='pending'){
+html+=`<button class='approve' onclick='approve(${i})'>Approve</button>`;
+}
+
+html+="</div>";
+});
+
+app.innerHTML=html;
+}
+
+function approve(i){
+let orders=getOrders();
+orders[i].status='approved';
+orders[i].updates.push('Order approved');
+saveOrders(orders);
+render();
+}
+
+function addUpdate(i){
+let orders=getOrders();
+let msg=document.getElementById('msg'+i).value;
+if(msg){
+orders[i].updates.push(msg);
+saveOrders(orders);
+render();
+}
+}
+
+render();
+</script>
+
+</body>
+</html>

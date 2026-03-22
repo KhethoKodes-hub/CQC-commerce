@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CQC Business Solutions - Contact Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Custom gradient backgrounds */
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #ffffff 0%, #e6f0ff 50%, #1e3a8a 100%);
+        }
+        
+        .bg-gradient-card {
+            background: linear-gradient(145deg, #ffffff, #f0f7ff);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Hover underline animation */
+        .hover-underline {
+            position: relative;
+        }
+        
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #2563eb, #1e3a8a);
+            transition: width 0.3s ease;
+        }
+        
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+        
+        /* Contact card hover */
+        .contact-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.2) 50%,
+                transparent 70%
+            );
+            transform: rotate(45deg);
+            transition: transform 0.6s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .contact-card:hover::before {
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Map pin pulse */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .map-pin {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Form input focus */
+        .form-input {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .form-input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            outline: none;
+        }
+        
+        /* File upload */
+        .file-upload {
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload:hover {
+            border-color: #2563eb;
+            background: #f0f7ff;
+        }
+        
+        /* Social icon hover */
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+        }
+        
+        /* Geo pin popup */
+        .geo-popup {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            transform: translateY(10px);
+        }
+        
+        .geo-pin:hover .geo-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gradient-primary min-h-screen">
+
+    <!-- Navigation (same as homepage) -->
+    <nav class="bg-white/80 backdrop-blur-md fixed w-full z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">CQC</span>
+                    </div>
+                    <span class="font-bold text-xl text-gray-800">Business Solutions</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">Home</a>
+                    <a href="about.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">About Us</a>
+                    <a href="services.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">Services</a>
+                    <a href="gallery.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">Gallery</a>
+                    <a href="contact.html" class="hover-underline text-blue-600 font-semibold">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="relative">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                        </svg>
+                        <span class="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                    </button>
+                    <button class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-2 rounded-lg hover:shadow-lg transition transform hover:scale-105">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 px-6">
+        <div class="container mx-auto text-center">
+            <div class="inline-block px-4 py-2 bg-blue-100 rounded-full mb-6">
+                <span class="text-blue-800 font-semibold text-sm">📞 GET IN TOUCH</span>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                Contact <span class="text-gradient">Us</span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Have a question? Need a quote? Want to refurbish your office furniture? We're here to help.
+            </p>
+        </div>
+    </section>
+
+    <!-- Quick Contact Cards -->
+    <section class="px-6 -mt-8">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Phone Card -->
+                <div class="contact-card bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center text-white text-2xl">
+                        📞
+                    </div>
+                    <div>
+                        <h3 class="text-sm text-gray-500 mb-1">Call Us</h3>
+                        <p class="text-xl font-bold">(011) 473-1467</p>
+                        <p class="text-sm text-gray-500">Mon-Fri, 8am-5pm</p>
+                    </div>
+                </div>
+                
+                <!-- Email Card -->
+                <div class="contact-card bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center text-white text-2xl">
+                        ✉️
+                    </div>
+                    <div>
+                        <h3 class="text-sm text-gray-500 mb-1">Email Us</h3>
+                        <p class="text-xl font-bold break-all">qfaltain@cqcbusinessolutions.co.za</p>
+                        <p class="text-sm text-gray-500">24hr response</p>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp Card -->
+                <div class="contact-card bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center text-white text-2xl">
+                        💬
+                    </div>
+                    <div>
+                        <h3 class="text-sm text-gray-500 mb-1">WhatsApp</h3>
+                        <p class="text-xl font-bold">082 567 5710</p>
+                        <p class="text-sm text-gray-500">Quick responses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Contact Section: Form + Map -->
+    <section class="py-16 px-6">
+        <div class="container mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-10">
+                    <h2 class="text-3xl font-bold mb-2">Send Us a <span class="text-gradient">Message</span></h2>
+                    <p class="text-gray-600 mb-8">Fill out the form below and we'll get back to you within 24 hours.</p>
+                    
+                    <form class="space-y-6">
+                        <!-- Name Row -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Your Name *</label>
+                                <input type="text" placeholder="John Smith" class="form-input w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Your Email *</label>
+                                <input type="email" placeholder="john@company.co.za" class="form-input w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            </div>
+                        </div>
+                        
+                        <!-- Phone -->
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Phone Number</label>
+                            <input type="tel" placeholder="+27 82 123 4567" class="form-input w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        </div>
+                        
+                        <!-- Subject -->
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Subject *</label>
+                            <select class="form-input w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                                <option>Select a subject</option>
+                                <option>Refurbishment Request</option>
+                                <option>Installation Quote</option>
+                                <option>Rental Inquiry</option>
+                                <option>Component Purchase</option>
+                                <option>General Question</option>
+                                <option>Partnership Opportunity</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Message -->
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Message *</label>
+                            <textarea rows="5" placeholder="Please describe what you need help with..." class="form-input w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <!-- File Upload -->
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Upload Image (for refurbishment requests)</label>
+                            <div class="file-upload border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-600 hover:bg-blue-50 transition cursor-pointer">
+                                <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <p class="text-gray-600 font-semibold">Click to upload or drag and drop</p>
+                                <p class="text-sm text-gray-500 mt-2">PNG, JPG, JPEG up to 20MB</p>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-2">No file chosen</p>
+                        </div>
+                        
+                        <!-- Privacy Policy Checkbox -->
+                        <div class="flex items-start space-x-3">
+                            <input type="checkbox" id="privacy" class="w-5 h-5 mt-1 text-blue-600 rounded focus:ring-blue-600">
+                            <label for="privacy" class="text-gray-600 text-sm">
+                                I agree to the <a href="#" class="text-blue-600 font-semibold hover:underline">Information Protection Policy</a> and consent to CQC Business Solutions processing my data to respond to my inquiry.
+                            </label>
+                        </div>
+                        
+                        <!-- reCAPTCHA -->
+                        <div class="bg-gray-50 p-4 rounded-xl flex items-center space-x-4">
+                            <input type="checkbox" class="w-5 h-5">
+                            <span class="text-gray-700">I am not a robot</span>
+                            <img src="https://via.placeholder.com/60x30/aaaaaa/ffffff?text=reCAPTCHA" alt="reCAPTCHA" class="ml-auto">
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Map & Contact Info -->
+                <div class="space-y-8">
+                    <!-- Google Map Simulation -->
+                    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                        <div class="relative h-96 bg-gray-200">
+                            <!-- Map Background -->
+                            <img src="https://via.placeholder.com/800x400/1e3a8a/ffffff?text=Google+Map+-+Gauteng,+South+Africa" alt="Map" class="w-full h-full object-cover">
+                            
+                            <!-- Animated Pins -->
+                            <div class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                <div class="relative geo-pin cursor-pointer">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center map-pin shadow-lg">
+                                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                                    </div>
+                                    <!-- Popup -->
+                                    <div class="geo-popup absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white p-3 rounded-lg shadow-xl whitespace-nowrap z-10">
+                                        <p class="font-bold text-gray-800">Head Office</p>
+                                        <p class="text-sm text-gray-600">Gauteng</p>
+                                        <p class="text-xs text-blue-600">(011) 473-1467</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- KZN Pin -->
+                            <div class="absolute top-1/2 left-2/3">
+                                <div class="relative geo-pin cursor-pointer">
+                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center map-pin">
+                                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                                    </div>
+                                    <div class="geo-popup absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-xl whitespace-nowrap text-sm">
+                                        <p class="font-semibold">KZN Partner</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Western Cape Pin -->
+                            <div class="absolute top-2/3 left-1/4">
+                                <div class="relative geo-pin cursor-pointer">
+                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center map-pin">
+                                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                                    </div>
+                                    <div class="geo-popup absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-xl whitespace-nowrap text-sm">
+                                        <p class="font-semibold">Western Cape Partner</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Eastern Cape Pin -->
+                            <div class="absolute top-3/4 left-1/2">
+                                <div class="relative geo-pin cursor-pointer">
+                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center map-pin">
+                                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                                    </div>
+                                    <div class="geo-popup absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-xl whitespace-nowrap text-sm">
+                                        <p class="font-semibold">Eastern Cape Partner</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Free State Pin -->
+                            <div class="absolute top-1/2 left-1/3">
+                                <div class="relative geo-pin cursor-pointer">
+                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center map-pin">
+                                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                                    </div>
+                                    <div class="geo-popup absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-xl whitespace-nowrap text-sm">
+                                        <p class="font-semibold">Free State Partner</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Map Controls -->
+                            <div class="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-2">
+                                <button class="w-8 h-8 hover:bg-gray-100 rounded flex items-center justify-center">+</button>
+                                <button class="w-8 h-8 hover:bg-gray-100 rounded flex items-center justify-center">−</button>
+                            </div>
+                            
+                            <!-- Map Type -->
+                            <div class="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg px-3 py-1 text-sm">
+                                🌍 Satellite
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 border-t border-gray-200">
+                            <p class="text-center text-gray-600">
+                                <span class="font-semibold">📍 Head Office:</span> Gauteng | 
+                                <span class="font-semibold">National Partners:</span> KZN, Western Cape, Free State, Eastern Cape
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Office Hours Card -->
+                    <div class="bg-white rounded-3xl shadow-2xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">Office <span class="text-gradient">Hours</span></h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="text-gray-600">Monday - Friday</span>
+                                <span class="font-semibold">8:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="text-gray-600">Saturday</span>
+                                <span class="font-semibold">9:00 AM - 1:00 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="text-gray-600">Sunday</span>
+                                <span class="font-semibold text-red-500">Closed</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Public Holidays</span>
+                                <span class="font-semibold text-red-500">Closed</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-blue-50 p-4 rounded-xl">
+                            <p class="text-sm text-blue-800 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Emergency refurbishment? Call our 24/7 support line: 082 567 5710
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Emergency Contact Card -->
+                    <div class="bg-gradient-to-r from-red-600 to-red-700 rounded-3xl shadow-2xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-4">Urgent Refurbishment?</h3>
+                        <p class="text-red-100 mb-6">We offer emergency repair services for business continuity. Same-day service available if spares are on hand.</p>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-white/20 rounded-full p-4">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-red-200">Call now</p>
+                                <p class="text-2xl font-bold">082 567 5710</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- National Footprint Section -->
+    <section class="py-16 px-6 bg-gradient-to-r from-blue-50 to-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-blue-600 font-semibold uppercase tracking-wider">Nationwide Coverage</span>
+                <h2 class="text-4xl font-bold mt-2 mb-4">Our <span class="text-gradient">National Footprint</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Strategic partners across South Africa to serve you locally</p>
+            </div>
+            
+            <div class="grid md:grid-cols-5 gap-6">
+                <!-- Gauteng -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl">
+                        🏢
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Gauteng</h3>
+                    <p class="text-gray-600 text-sm mb-3">Head Office</p>
+                    <p class="text-blue-600 font-semibold">(011) 473-1467</p>
+                    <p class="text-xs text-gray-500 mt-2">qfaltain@cqcbusinessolutions.co.za</p>
+                </div>
+                
+                <!-- KZN -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl">
+                        🌊
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">KZN</h3>
+                    <p class="text-gray-600 text-sm mb-3">Strategic Partner</p>
+                    <p class="text-blue-600 font-semibold">(031) 123 4567</p>
+                    <p class="text-xs text-gray-500 mt-2">kzn@cqcbusinessolutions.co.za</p>
+                </div>
+                
+                <!-- Western Cape -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl">
+                        ⛰️
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Western Cape</h3>
+                    <p class="text-gray-600 text-sm mb-3">Strategic Partner</p>
+                    <p class="text-blue-600 font-semibold">(021) 123 4567</p>
+                    <p class="text-xs text-gray-500 mt-2">wc@cqcbusinessolutions.co.za</p>
+                </div>
+                
+                <!-- Eastern Cape -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl">
+                        🌅
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Eastern Cape</h3>
+                    <p class="text-gray-600 text-sm mb-3">Strategic Partner</p>
+                    <p class="text-blue-600 font-semibold">(041) 123 4567</p>
+                    <p class="text-xs text-gray-500 mt-2">ec@cqcbusinessolutions.co.za</p>
+                </div>
+                
+                <!-- Free State -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl">
+                        🌾
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Free State</h3>
+                    <p class="text-gray-600 text-sm mb-3">Strategic Partner</p>
+                    <p class="text-blue-600 font-semibold">(051) 123 4567</p>
+                    <p class="text-xs text-gray-500 mt-2">fs@cqcbusinessolutions.co.za</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- B-BBEE & Compliance Section -->
+    <section class="py-16 px-6">
+        <div class="container mx-auto">
+            <div class="bg-gradient-to-r from-blue-900 to-blue-800 rounded-3xl p-8 md:p-12 text-white">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-4">B-BBEE Level 1 Contributor</h3>
+                        <p class="text-blue-200 mb-6">We're proud to be a Level 1 B-BBEE contributor with 135% procurement recognition.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <span>100% Black Ownership</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <span>31% Black Women Ownership</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <span>135% Procurement Recognition</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 flex space-x-4">
+                            <a href="#" class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:shadow-xl transition transform hover:scale-105">
+                                Download Certificate
+                            </a>
+                            <a href="#" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition">
+                                View Compliance
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center">
+                            <div class="text-4xl font-bold mb-2">Level 1</div>
+                            <div class="text-sm text-blue-200">B-BBEE</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center">
+                            <div class="text-4xl font-bold mb-2">135%</div>
+                            <div class="text-sm text-blue-200">Procurement</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center">
+                            <div class="text-4xl font-bold mb-2">100%</div>
+                            <div class="text-sm text-blue-200">Black Owned</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center">
+                            <div class="text-4xl font-bold mb-2">31%</div>
+                            <div class="text-sm text-blue-200">Black Women</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 px-6 bg-gradient-to-r from-blue-50 to-white">
+        <div class="container mx-auto max-w-3xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">Frequently Asked <span class="text-gradient">Questions</span></h2>
+                <p class="text-gray-600">Quick answers to common questions</p>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
+                        <span>How quickly do you respond to inquiries?</span>
+                        <svg class="w-5 h-5 text-blue-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-600">
+                        We respond to all inquiries within 24 hours during business days. For urgent refurbishment needs, call our emergency line at 082 567 5710.
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
+                        <span>Do you service areas outside Gauteng?</span>
+                        <svg class="w-5 h-5 text-blue-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-600 hidden">
+                        Yes! We have strategic partners in KZN, Western Cape, Free State, and Eastern Cape. We can service clients nationwide.
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
+                        <span>Can I get a quote before sending my chairs for refurbishment?</span>
+                        <svg class="w-5 h-5 text-blue-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-600 hidden">
+                        Absolutely! Use our contact form and upload photos of your chairs. We'll provide a detailed quote within 24 hours.
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
+                        <span>Do you offer loan chairs during refurbishment?</span>
+                        <svg class="w-5 h-5 text-blue-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-600 hidden">
+                        Yes, we provide loan chairs whenever possible to ensure business continuity while your furniture is being refurbished.
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
+                        <span>What payment methods do you accept?</span>
+                        <svg class="w-5 h-5 text-blue-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-600 hidden">
+                        We accept EFT, credit cards, and corporate purchase orders for approved clients.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 px-6">
+        <div class="container mx-auto max-w-4xl">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-12 text-center text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mt-20 -mr-20"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full -mb-20 -ml-20"></div>
+                
+                <h2 class="text-4xl font-bold mb-4 relative z-10">Prefer to Talk to Someone?</h2>
+                <p class="text-xl text-blue-100 mb-8 relative z-10">Our team is ready to assist you</p>
+                
+                <div class="flex flex-wrap justify-center gap-4 relative z-10">
+                    <a href="tel:0114731467" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition transform hover:scale-105 flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        <span>Call (011) 473-1467</span>
+                    </a>
+                    <a href="#" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition transform hover:scale-105">
+                        Request Callback
+                    </a>
+                </div>
+                
+                <div class="mt-8 text-sm text-blue-200 relative z-10">
+                    <p>📧 qfaltain@cqcbusinessolutions.co.za | 📱 082 567 5710 (WhatsApp)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as homepage) -->
+    <footer class="bg-gray-900 text-white py-12 px-6">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">CQC</span>
+                        </div>
+                        <span class="font-bold text-xl">Business Solutions</span>
+                    </div>
+                    <p class="text-gray-400">Level 1 B-BBEE Contributor with 135% Procurement Recognition. 100% Black Owned with 31% Black Women Ownership.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Services</a></li>
+                        <li><a href="#" class="hover:text-white transition">Gallery</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Our Products</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Executive Chairs</a></li>
+                        <li><a href="#" class="hover:text-white transition">Industrial Seating</a></li>
+                        <li><a href="#" class="hover:text-white transition">Soft Seating</a></li>
+                        <li><a href="#" class="hover:text-white transition">Refurbished Furniture</a></li>
+                        <li><a href="#" class="hover:text-white transition">Chair Components</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span>(011) 473-1467</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>qfaltain@cqcbusinessolutions.co.za</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M12 18h.01M8 21h8a4 4 0 004-4V7a4 4 0 00-4-4H8a4 4 0 00-4 4v10a4 4 0 004 4z"></path>
+                            </svg>
+                            <span>082 567 5710</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2026 CQC Business Solutions (PTY) LTD. All rights reserved. NB Copyright protected.</p>
+                <p class="mt-2">Est. 2021 • Gauteng, South Africa • National Footprint: KZN, WP, Free State, Eastern Cape</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-8 right-8">
+        <button class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition transform hover:scale-110 float-animation">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Simple JavaScript -->
+    <script>
+        // FAQ accordion
+        document.querySelectorAll('.bg-white.rounded-xl button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const arrow = this.querySelector('svg');
+                
+                if(content.style.display === 'none' || !content.style.display) {
+                    content.style.display = 'block';
+                    arrow.style.transform = 'rotate(180deg)';
+                } else {
+                    content.style.display = 'none';
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+        
+        // File upload simulation
+        document.querySelector('.file-upload')?.addEventListener('click', function() {
+            alert('File upload dialog would open here. Max 20MB.');
+        });
+        
+        // Form submission simulation
+        document.querySelector('form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! Our team will contact you within 24 hours. (Demo simulation)');
+        });
+        
+        // Geo pin click simulation
+        document.querySelectorAll('.geo-pin').forEach(pin => {
+            pin.addEventListener('click', function() {
+                const popup = this.querySelector('.geo-popup');
+                if(popup) {
+                    alert(popup.querySelector('.font-bold')?.textContent + ': ' + 
+                          (popup.querySelector('.text-xs')?.textContent || 'Contact office for details'));
+                }
+            });
+        });
+        
+        // Initially hide all FAQ answers
+        document.querySelectorAll('.bg-white.rounded-xl div.px-6').forEach(div => {
+            div.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
