@@ -2,1129 +2,1563 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CQC Business Solutions - Our Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CQC Business Solutions | Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        /* Custom gradient backgrounds */
-        .bg-gradient-primary {
-            background: linear-gradient(135deg, #ffffff 0%, #e6f0ff 50%, #1e3a8a 100%);
-        }
-        
-        .bg-gradient-card {
-            background: linear-gradient(145deg, #ffffff, #f0f7ff);
-        }
-        
-        .text-gradient {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Floating animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        /* Hover underline animation */
-        .hover-underline {
-            position: relative;
-        }
-        
-        .hover-underline::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background: linear-gradient(90deg, #2563eb, #1e3a8a);
-            transition: width 0.3s ease;
-        }
-        
-        .hover-underline:hover::after {
-            width: 100%;
-        }
-        
-        /* Service card shine effect */
-        .service-card {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.2) 50%,
-                transparent 70%
-            );
-            transform: rotate(45deg);
-            transition: transform 0.6s ease;
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        .service-card:hover::before {
-            transform: rotate(45deg) translate(50%, 50%);
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Process step connector */
-        .process-connector {
-            position: absolute;
-            top: 50%;
-            right: -30px;
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, #2563eb, #1e3a8a);
-            transform: translateY(-50%);
-        }
-        
-        @media (max-width: 768px) {
-            .process-connector {
-                display: none;
-            }
-        }
-        
-        /* Counter animation */
-        .counter-number {
-            transition: all 0.3s ease;
-        }
-        
-        /* Stats card */
-        .stat-card {
-            transition: all 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: scale(1.05);
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
-        }
-        
-        .stat-card:hover .stat-icon {
-            background: white;
-            color: #1e3a8a;
-        }
-        
-        /* Tab styling */
-        .service-tab {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-tab.active {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-        }
-        
-        .service-tab.active::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-        }
-        
-        .service-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: -10px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-        }
-        
-        /* Before/After image slider simulation */
-        .comparison-slider {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-        }
-        
-        .comparison-before {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            border-right: 4px solid white;
-        }
-        
-        /* Testimonial carousel dot */
-        .dot {
-            transition: all 0.3s ease;
-        }
-        
-        .dot.active {
-            background: #1e3a8a;
-            width: 30px;
-            border-radius: 10px;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════ */
+:root {
+  --orange:      #f97316;
+  --orange-d:    #ea580c;
+  --orange-glow: rgba(249,115,22,0.22);
+  --sky:         #38bdf8;
+  --sky-pale:    #e0f2fe;
+  --ink:         #0a0804;
+  --ink-2:       #161410;
+  --paper:       #fdfaf6;
+  --warm-mid:    #f5ede0;
+  --muted:       rgba(255,255,255,0.45);
+  --glass:       rgba(255,255,255,0.07);
+  --glass-b:     rgba(255,255,255,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── custom cursor ── */
+#cursor {
+  position: fixed; top: 0; left: 0;
+  width: 12px; height: 12px;
+  background: var(--orange);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width .35s, height .35s, background .35s, opacity .25s;
+  mix-blend-mode: multiply;
+}
+#cursor.expand {
+  width: 52px; height: 52px;
+  background: rgba(249,115,22,0.18);
+  border: 1.5px solid var(--orange);
+}
+
+/* ── scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--warm-mid); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--orange), var(--sky));
+  border-radius: 6px;
+}
+
+/* ══════════════════════════════════════
+   TYPOGRAPHY
+══════════════════════════════════════ */
+.serif   { font-family: 'Instrument Serif', serif; }
+.display { font-family: 'Syne', sans-serif; }
+
+.grad-text {
+  background: linear-gradient(120deg, var(--orange) 20%, var(--sky) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-text-warm {
+  background: linear-gradient(120deg, #ea580c 0%, #f97316 60%, #fb923c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ══════════════════════════════════════
+   HEADER
+══════════════════════════════════════ */
+#hdr {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 0 40px;
+  transition: background .5s, border .5s, box-shadow .5s;
+}
+#hdr.solid {
+  background: rgba(253,250,246,0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(249,115,22,0.1);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+}
+.hdr-inner {
+  max-width: 1320px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 78px;
+}
+.logo-wrap { display: flex; align-items: center; gap: 13px; cursor: pointer; }
+.logo-mark {
+  width: 42px; height: 42px; border-radius: 11px;
+  background: linear-gradient(135deg,#f97316,#0ea5e9);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 12px; color: white; letter-spacing: -.3px;
+  box-shadow: 0 4px 14px rgba(249,115,22,.35);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+}
+.logo-mark:hover { transform: rotate(8deg) scale(1.1); }
+.logo-name {
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: .95rem; color: white;
+  transition: color .35s;
+}
+#hdr.solid .logo-name { color: var(--ink); }
+.logo-sub { font-size: .68rem; color: rgba(255,255,255,.45); transition: color .35s; }
+#hdr.solid .logo-sub { color: #9ca3af; }
+
+nav { display: flex; gap: 34px; }
+nav a {
+  font-family: 'Syne', sans-serif; font-size: .8rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: rgba(255,255,255,.7); text-decoration: none;
+  position: relative; transition: color .3s;
+}
+#hdr.solid nav a { color: #6b7280; }
+nav a::after {
+  content: ''; position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1.5px; background: var(--orange);
+  transform: scaleX(0); transition: transform .3s;
+}
+nav a:hover, nav a.active { color: var(--orange); }
+#hdr.solid nav a:hover, #hdr.solid nav a.active { color: var(--orange); }
+nav a:hover::after, nav a.active::after { transform: scaleX(1); }
+
+.hdr-actions { display: flex; align-items: center; gap: 12px; }
+.cart-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  border-radius: 100px; padding: 8px 16px;
+  cursor: pointer; transition: all .3s;
+  font-family: 'Syne', sans-serif; font-size: .75rem; font-weight: 600;
+  color: rgba(255,255,255,.8);
+}
+#hdr.solid .cart-pill {
+  background: var(--warm-mid); border-color: rgba(249,115,22,.15);
+  color: #374151;
+}
+.cart-pill:hover { background: rgba(249,115,22,.15); border-color: rgba(249,115,22,.4); }
+.cart-dot {
+  width: 18px; height: 18px;
+  background: var(--orange); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .65rem; font-weight: 700; color: white;
+}
+.btn-sign {
+  font-family: 'Syne', sans-serif; font-size: .78rem; font-weight: 700;
+  letter-spacing: .04em;
+  background: linear-gradient(135deg,#f97316,#ea580c);
+  color: white; border: none; border-radius: 100px;
+  padding: 10px 22px; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(249,115,22,.35);
+  transition: all .35s;
+}
+.btn-sign:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(249,115,22,.45); }
+
+/* ══════════════════════════════════════
+   MOBILE MENU
+══════════════════════════════════════ */
+.mob-menu {
+  display: none; position: fixed; inset: 0; z-index: 490;
+  background: rgba(10,8,4,.97);
+  backdrop-filter: blur(24px);
+  flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+}
+.mob-menu.open { display: flex; }
+.mob-menu a {
+  font-family: 'Instrument Serif', serif; font-size: 3rem;
+  color: rgba(255,255,255,.75); text-decoration: none;
+  transition: color .3s;
+}
+.mob-menu a:hover { color: var(--orange); }
+.mob-close {
+  position: absolute; top: 28px; right: 28px;
+  background: none; border: none; color: white; cursor: pointer;
+}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero {
+  min-height: 100vh; position: relative;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=1900&q=85&auto=format&fit=crop');
+  background-size: cover; background-position: center 20%;
+  transform: scale(1.06);
+  transition: transform 9s cubic-bezier(.4,0,.2,1);
+}
+.hero-bg.ready { transform: scale(1); }
+.hero-fog {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    170deg,
+    rgba(8,5,2,.72) 0%,
+    rgba(18,10,3,.48) 35%,
+    rgba(5,18,32,.62) 75%,
+    rgba(8,5,2,.9) 100%
+  );
+}
+/* animated grain overlay */
+.hero-grain {
+  position: absolute; inset: 0; opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+  animation: grainShift 1.2s steps(2) infinite;
+}
+@keyframes grainShift {
+  0%  { transform: translate(0,0); }
+  25% { transform: translate(-2px,1px); }
+  50% { transform: translate(1px,-2px); }
+  75% { transform: translate(-1px,2px); }
+  100%{ transform: translate(2px,-1px); }
+}
+
+/* radial glow orbs */
+.orb {
+  position: absolute; border-radius: 50%;
+  pointer-events: none; filter: blur(80px);
+}
+.orb-1 { width: 700px; height: 700px; bottom: -200px; left: -100px; background: radial-gradient(circle, rgba(249,115,22,.18), transparent 70%); }
+.orb-2 { width: 500px; height: 500px; top: 10%; right: -80px; background: radial-gradient(circle, rgba(56,189,248,.14), transparent 70%); }
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1320px; margin: 0 auto;
+  padding: 0 40px 90px;
+  width: 100%;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid rgba(249,115,22,.38);
+  background: rgba(249,115,22,.1);
+  border-radius: 100px; padding: 5px 18px;
+  margin-bottom: 28px;
+  font-family: 'Syne', sans-serif; font-size: .72rem;
+  font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: #fb923c;
+  animation: fadeUp .8s ease forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(3.2rem, 7.5vw, 6.8rem);
+  font-weight: 400; line-height: 1.0;
+  color: white; letter-spacing: -.03em;
+  margin-bottom: 28px;
+  animation: fadeUp .9s .1s ease both;
+}
+.hero p {
+  font-size: 1.05rem; color: rgba(255,255,255,.6);
+  line-height: 1.85; max-width: 520px;
+  margin-bottom: 44px;
+  animation: fadeUp .9s .2s ease both;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp .9s .3s ease both; }
+
+.btn-primary {
+  font-family: 'Syne', sans-serif; font-size: .8rem; font-weight: 700;
+  letter-spacing: .05em; text-transform: uppercase;
+  background: linear-gradient(135deg,#f97316,#ea580c);
+  color: white; border: none; border-radius: 100px;
+  padding: 15px 34px; cursor: pointer;
+  box-shadow: 0 6px 24px rgba(249,115,22,.4);
+  transition: all .38s cubic-bezier(.4,0,.2,1);
+  position: relative; overflow: hidden;
+}
+.btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg,#fb923c,#f97316);
+  opacity: 0; transition: opacity .3s;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(249,115,22,.5); }
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary span { position: relative; z-index: 1; }
+
+.btn-ghost-white {
+  font-family: 'Syne', sans-serif; font-size: .8rem; font-weight: 600;
+  letter-spacing: .05em; text-transform: uppercase;
+  background: transparent; color: rgba(255,255,255,.75);
+  border: 1.5px solid rgba(255,255,255,.28);
+  border-radius: 100px; padding: 14px 34px; cursor: pointer;
+  transition: all .35s;
+}
+.btn-ghost-white:hover {
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.6);
+  transform: translateY(-3px); color: white;
+}
+
+/* floating hero stats */
+.hero-stats {
+  position: absolute; right: 40px; bottom: 90px;
+  z-index: 3; display: flex; flex-direction: column; gap: 14px;
+}
+.hstat {
+  background: rgba(255,255,255,.07);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 18px; padding: 16px 22px;
+  text-align: right;
+  animation: floatStat 5s ease-in-out infinite;
+}
+.hstat:nth-child(2) { animation-delay: -2s; }
+.hstat:nth-child(3) { animation-delay: -4s; }
+@keyframes floatStat {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+.hstat-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2rem; color: white; line-height: 1;
+}
+.hstat-lbl { font-size: .68rem; color: rgba(255,255,255,.45); letter-spacing: .08em; text-transform: uppercase; margin-top: 3px; }
+
+/* scroll cue */
+.scroll-cue {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(255,255,255,.3); font-size: .65rem; letter-spacing: .14em; text-transform: uppercase;
+  font-family: 'Syne', sans-serif;
+}
+.scroll-bar {
+  width: 1px; height: 48px;
+  background: linear-gradient(180deg, rgba(249,115,22,.8), transparent);
+  animation: scrollPulse 2.2s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes scrollPulse {
+  0%  { opacity:0; transform: scaleY(0); }
+  40% { opacity:1; transform: scaleY(1); }
+  100%{ opacity:0; transform: scaleY(1); }
+}
+
+/* ══════════════════════════════════════
+   MARQUEE STRIP
+══════════════════════════════════════ */
+.marquee-strip {
+  background: var(--ink);
+  padding: 16px 0;
+  overflow: hidden; white-space: nowrap;
+  border-top: 1px solid rgba(249,115,22,.15);
+  border-bottom: 1px solid rgba(249,115,22,.08);
+}
+.marquee-track {
+  display: inline-flex; gap: 0;
+  animation: marqueeScroll 28s linear infinite;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-item {
+  display: inline-flex; align-items: center; gap: 20px;
+  padding: 0 40px;
+  font-family: 'Syne', sans-serif; font-size: .72rem;
+  font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+}
+.marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--orange); }
+
+/* ══════════════════════════════════════
+   SECTION COMMON
+══════════════════════════════════════ */
+.sec { padding: 112px 40px; }
+.cnt { max-width: 1320px; margin: 0 auto; }
+.sec-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(249,115,22,.25);
+  background: linear-gradient(135deg,rgba(249,115,22,.07),rgba(56,189,248,.05));
+  border-radius: 100px; padding: 5px 16px;
+  font-family: 'Syne', sans-serif; font-size: .68rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--orange);
+  margin-bottom: 22px;
+}
+.sec-label::before { content:''; width:6px;height:6px;border-radius:50%;background:var(--orange); }
+.sec-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 400; line-height: 1.12;
+  letter-spacing: -.02em; color: var(--ink);
+}
+
+/* ══════════════════════════════════════
+   REFURBISHMENT – FEATURED (SPLIT)
+══════════════════════════════════════ */
+.refurb-section { background: white; }
+.refurb-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 640px; border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,.1), 0 0 0 1px rgba(249,115,22,.08);
+}
+@media(max-width:860px){ .refurb-grid { grid-template-columns:1fr; } }
+
+.refurb-left {
+  padding: 60px 56px;
+  background: white;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.refurb-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg,rgba(249,115,22,.1),rgba(249,115,22,.05));
+  border: 1px solid rgba(249,115,22,.3);
+  border-radius: 100px; padding: 5px 16px; margin-bottom: 28px;
+  font-family: 'Syne', sans-serif; font-size: .68rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--orange);
+}
+.star-icon { width: 10px; height: 10px; fill: var(--orange); }
+.refurb-left h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400; line-height: 1.12; margin-bottom: 20px;
+  color: var(--ink);
+}
+.refurb-left > p { font-size: .95rem; color: #6b7280; line-height: 1.85; margin-bottom: 36px; }
+
+/* checklist */
+.check-list { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-bottom: 36px; }
+.check-item { display: flex; align-items: flex-start; gap: 14px; }
+.check-icon {
+  width: 30px; height: 30px; border-radius: 9px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg,rgba(249,115,22,.12),rgba(249,115,22,.06));
+}
+.check-icon svg { width: 15px; height: 15px; stroke: var(--orange); }
+.check-text strong { display: block; font-size: .88rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.check-text span { font-size: .8rem; color: #9ca3af; }
+
+/* mini stats bar */
+.mstat-bar {
+  display: flex; gap: 0;
+  border: 1px solid rgba(249,115,22,.12); border-radius: 16px;
+  overflow: hidden; margin-bottom: 36px;
+}
+.mstat {
+  flex: 1; padding: 14px 20px; text-align: center;
+  background: linear-gradient(135deg,#fff7f0,#fafafa);
+  border-right: 1px solid rgba(249,115,22,.1);
+  transition: background .3s;
+}
+.mstat:last-child { border-right: none; }
+.mstat:hover { background: linear-gradient(135deg,#fff0e0,#fdf8f4); }
+.mstat-val {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.7rem; line-height: 1;
+  background: linear-gradient(120deg,#f97316,#0ea5e9);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.mstat-key { font-size: .68rem; color: #9ca3af; text-transform: uppercase; letter-spacing: .08em; margin-top: 4px; font-family: 'Syne', sans-serif; font-weight: 600; }
+
+.refurb-cta {
+  display: flex; align-items: center; gap: 16px;
+}
+.btn-dark {
+  font-family: 'Syne', sans-serif; font-size: .78rem; font-weight: 700;
+  letter-spacing: .05em; text-transform: uppercase;
+  background: var(--ink); color: white; border: none;
+  border-radius: 100px; padding: 14px 28px; cursor: pointer;
+  transition: all .35s; display: flex; align-items: center; gap: 8px;
+}
+.btn-dark:hover { background: var(--orange); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(249,115,22,.4); }
+.btn-txt {
+  font-family: 'Syne', sans-serif; font-size: .78rem; font-weight: 600;
+  color: var(--orange); background: none; border: none; cursor: pointer;
+  letter-spacing: .04em; display: flex; align-items: center; gap: 6px;
+  transition: gap .3s;
+}
+.btn-txt:hover { gap: 10px; }
+
+/* right image panel */
+.refurb-right {
+  position: relative; overflow: hidden;
+}
+.refurb-right-img {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=900&q=80&auto=format&fit=crop');
+  background-size: cover; background-position: center;
+  transition: transform .7s cubic-bezier(.4,0,.2,1);
+}
+.refurb-grid:hover .refurb-right-img { transform: scale(1.04); }
+.refurb-right-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(10,8,4,.1) 0%, rgba(249,115,22,.35) 100%);
+}
+.refurb-right-badge {
+  position: absolute; bottom: 32px; left: 32px; right: 32px;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 20px; padding: 20px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.refurb-save {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2.6rem; color: white; line-height: 1;
+}
+.refurb-save-sub { font-size: .75rem; color: rgba(255,255,255,.65); margin-top: 4px; }
+.refurb-tag {
+  background: linear-gradient(135deg,#f97316,#ea580c);
+  border-radius: 12px; padding: 10px 16px; text-align: center;
+  font-family: 'Syne', sans-serif; font-size: .68rem; font-weight: 700;
+  letter-spacing: .06em; color: white;
+}
+
+/* ══════════════════════════════════════
+   SERVICE CARDS – BENTO GRID
+══════════════════════════════════════ */
+.services-section { background: var(--paper); }
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+/* card base */
+.scard {
+  border-radius: 26px; overflow: hidden;
+  position: relative; cursor: default;
+  transition: transform .45s cubic-bezier(.4,0,.2,1),
+              box-shadow .45s cubic-bezier(.4,0,.2,1);
+}
+.scard:hover { transform: translateY(-8px); }
+
+/* placement */
+.sc-components { grid-column: span 5; }
+.sc-rental      { grid-column: span 7; }
+.sc-transport   { grid-column: span 4; }
+.sc-partners    { grid-column: span 4; }
+.sc-training    { grid-column: span 4; }
+
+@media(max-width:1100px){
+  .sc-components,.sc-rental,.sc-transport,.sc-partners,.sc-training { grid-column: span 6; }
+}
+@media(max-width:700px){
+  .sc-components,.sc-rental,.sc-transport,.sc-partners,.sc-training { grid-column: span 12; }
+}
+
+/* card with image bg */
+.scard-img .scard-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform .6s cubic-bezier(.4,0,.2,1);
+}
+.scard-img:hover .scard-bg { transform: scale(1.06); }
+.scard-img .scard-fog {
+  position: absolute; inset: 0;
+}
+.scard-body {
+  position: relative; z-index: 2;
+  padding: 36px 36px 32px;
+  height: 100%; display: flex; flex-direction: column; justify-content: flex-end;
+  min-height: 340px;
+}
+/* light card */
+.scard-light {
+  background: white;
+  border: 1px solid rgba(249,115,22,.08);
+  box-shadow: 0 4px 24px rgba(0,0,0,.04);
+}
+.scard-light .scard-body { min-height: 0; }
+.scard-light:hover { box-shadow: 0 24px 60px rgba(249,115,22,.12); border-color: rgba(249,115,22,.25); }
+
+/* icon pill */
+.scard-icon {
+  width: 52px; height: 52px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px; flex-shrink: 0;
+  transition: transform .4s;
+}
+.scard:hover .scard-icon { transform: scale(1.12) rotate(-6deg); }
+
+/* tags */
+.scard-tag {
+  display: inline-block; padding: 3px 11px; border-radius: 100px;
+  font-family: 'Syne', sans-serif; font-size: .64rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.scard-tag.light { background: rgba(249,115,22,.15); color: #fb923c; }
+.scard-tag.on-dark { background: rgba(255,255,255,.18); color: rgba(255,255,255,.9); }
+
+.scard-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.55rem; font-weight: 400; line-height: 1.2; margin-bottom: 10px;
+}
+.scard-title.dark { color: var(--ink); }
+.scard-title.white { color: white; }
+
+.scard-desc { font-size: .84rem; line-height: 1.75; }
+.scard-desc.muted { color: #6b7280; }
+.scard-desc.white-muted { color: rgba(255,255,255,.65); }
+
+/* chips */
+.chip-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+.chip {
+  padding: 5px 13px; border-radius: 100px; font-size: .72rem;
+  font-family: 'Syne', sans-serif; font-weight: 600; letter-spacing: .04em;
+}
+.chip.smoke { background: #f3f4f6; color: #374151; }
+.chip.glass-chip { background: rgba(255,255,255,.18); color: rgba(255,255,255,.85); }
+
+/* rental price grid */
+.price-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 18px; }
+.pgrid-item {
+  border-radius: 14px; padding: 12px; text-align: center;
+  background: rgba(255,255,255,.1);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.18);
+  transition: background .3s;
+}
+.pgrid-item:hover { background: rgba(255,255,255,.18); }
+.pgrid-period { font-family: 'Syne', sans-serif; font-size: .64rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.pgrid-price { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: white; line-height: 1.2; }
+.pgrid-sub { font-size: .62rem; color: rgba(255,255,255,.4); margin-top: 2px; }
+
+/* card link arrow */
+.scard-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Syne', sans-serif; font-size: .74rem; font-weight: 700;
+  letter-spacing: .05em; text-transform: uppercase;
+  background: none; border: none; cursor: pointer;
+  margin-top: 22px;
+  transition: gap .3s;
+}
+.scard-link.orange { color: var(--orange); }
+.scard-link.white  { color: rgba(255,255,255,.8); }
+.scard-link:hover { gap: 14px; }
+.scard-link svg { width: 14px; height: 14px; stroke: currentColor; }
+
+/* ── nationwide dots ── */
+.dot-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.loc-dot {
+  display: flex; align-items: center; gap: 5px;
+  font-size: .72rem; color: #6b7280; font-family: 'Syne', sans-serif;
+}
+.loc-dot::before { content:''; width:6px;height:6px;border-radius:50%; background:var(--sky); display:inline-block; }
+
+/* ── delivery checks ── */
+.dcheck { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: .82rem; color: #4b5563; }
+.dcheck svg { width: 16px; height: 16px; stroke: var(--orange); flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   PROCESS SECTION – DARK CINEMATIC
+══════════════════════════════════════ */
+.process-section {
+  background: var(--ink);
+  position: relative; overflow: hidden;
+}
+.process-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1600&q=60&auto=format&fit=crop');
+  background-size: cover; background-position: center;
+  opacity: .06;
+}
+.proc-orb1 { position: absolute; top: -120px; right: -60px; width: 600px; height: 600px; background: radial-gradient(circle,rgba(249,115,22,.1),transparent 70%); pointer-events:none; }
+.proc-orb2 { position: absolute; bottom: -80px; left: 0; width: 500px; height: 500px; background: radial-gradient(circle,rgba(56,189,248,.08),transparent 70%); pointer-events:none; }
+
+.proc-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 24px; position: relative; z-index: 2;
+}
+@media(max-width:900px){ .proc-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:500px){ .proc-grid { grid-template-columns: 1fr; } }
+
+/* connector line */
+.proc-grid::before {
+  content: '';
+  position: absolute;
+  top: 36px; left: calc(12.5% + 12px); right: calc(12.5% + 12px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(249,115,22,.35), rgba(56,189,248,.35), transparent);
+  z-index: 0;
+}
+
+.proc-step { position: relative; z-index: 1; text-align: center; }
+.proc-num {
+  width: 72px; height: 72px;
+  border-radius: 22px; margin: 0 auto 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 2rem; color: white; line-height: 1;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  transition: all .4s cubic-bezier(.4,0,.2,1);
+  position: relative;
+}
+.proc-num::after {
+  content: '';
+  position: absolute; inset: -3px; border-radius: 25px;
+  background: linear-gradient(135deg,rgba(249,115,22,.25),rgba(56,189,248,.2));
+  z-index: -1; opacity: 0;
+  transition: opacity .4s;
+}
+.proc-step:hover .proc-num {
+  background: linear-gradient(135deg,rgba(249,115,22,.2),rgba(56,189,248,.15));
+  border-color: rgba(249,115,22,.5);
+  transform: scale(1.08);
+}
+.proc-step:hover .proc-num::after { opacity: 1; }
+
+.proc-step h4 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.3rem; color: white; margin-bottom: 10px;
+}
+.proc-step p { font-size: .82rem; color: rgba(255,255,255,.42); line-height: 1.7; }
+
+/* ══════════════════════════════════════
+   TESTIMONIAL
+══════════════════════════════════════ */
+.testi-section { background: white; }
+.testi-card {
+  max-width: 860px; margin: 0 auto;
+  background: var(--paper); border-radius: 28px;
+  padding: 56px 64px;
+  border: 1px solid rgba(249,115,22,.1);
+  box-shadow: 0 8px 40px rgba(0,0,0,.05);
+  position: relative; overflow: hidden;
+}
+.testi-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--sky));
+}
+.quote-mark {
+  font-family: 'Instrument Serif', serif;
+  font-size: 8rem; line-height: 1; color: rgba(249,115,22,.12);
+  position: absolute; top: 20px; left: 40px;
+  user-select: none; pointer-events: none;
+}
+.stars { display: flex; gap: 4px; margin-bottom: 24px; }
+.star-svg { width: 18px; height: 18px; fill: #f59e0b; }
+.testi-text {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.75; color: #374151;
+  margin-bottom: 36px; position: relative; z-index: 1;
+  font-style: italic;
+}
+.testi-author { display: flex; align-items: center; gap: 16px; }
+.testi-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg,#f97316,#0ea5e9);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: .82rem; color: white;
+}
+.testi-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .88rem; color: var(--ink); }
+.testi-role { font-size: .78rem; color: #9ca3af; margin-top: 2px; }
+.testi-trust {
+  margin-left: auto;
+  font-family: 'Syne', sans-serif; font-size: .7rem; font-weight: 600;
+  color: #9ca3af; letter-spacing: .06em; text-align: right;
+}
+
+/* ══════════════════════════════════════
+   WHY CQC – DARK CARD ROW
+══════════════════════════════════════ */
+.why-section { background: var(--paper); }
+.why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+@media(max-width:900px){ .why-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:500px){ .why-grid { grid-template-columns: 1fr; } }
+
+.why-card {
+  border-radius: 22px; padding: 34px 28px;
+  background: white;
+  border: 1px solid rgba(249,115,22,.07);
+  box-shadow: 0 2px 16px rgba(0,0,0,.04);
+  transition: all .42s cubic-bezier(.4,0,.2,1);
+  position: relative; overflow: hidden;
+}
+.why-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg,rgba(249,115,22,.04),rgba(56,189,248,.04));
+  opacity: 0; transition: opacity .4s;
+}
+.why-card:hover { transform: translateY(-7px); box-shadow: 0 20px 50px rgba(249,115,22,.11); border-color: rgba(249,115,22,.22); }
+.why-card:hover::after { opacity: 1; }
+.why-icon {
+  width: 52px; height: 52px; border-radius: 15px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px; transition: transform .4s;
+  position: relative; z-index: 1;
+}
+.why-card:hover .why-icon { transform: scale(1.12) rotate(6deg); }
+.why-card h4 {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: .92rem;
+  color: var(--ink); margin-bottom: 8px; position: relative; z-index: 1;
+}
+.why-card p { font-size: .8rem; color: #6b7280; line-height: 1.7; position: relative; z-index: 1; }
+
+/* ══════════════════════════════════════
+   CTA SECTION
+══════════════════════════════════════ */
+.cta-section { position: relative; overflow: hidden; }
+.cta-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1700&q=80&auto=format&fit=crop');
+  background-size: cover; background-position: center 40%;
+}
+.cta-fog {
+  position: absolute; inset: 0;
+  background: linear-gradient(140deg, rgba(10,6,2,.86) 0%, rgba(5,18,34,.78) 100%);
+}
+.cta-orb { position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 700px; height: 500px; background: radial-gradient(circle,rgba(249,115,22,.15),transparent 70%); pointer-events:none; }
+.cta-inner {
+  position: relative; z-index: 2;
+  text-align: center; padding: 120px 40px;
+}
+.cta-inner h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  color: white; font-weight: 400; margin-bottom: 20px; line-height: 1.1;
+}
+.cta-inner p { color: rgba(255,255,255,.55); font-size: 1rem; max-width: 500px; margin: 0 auto 48px; line-height: 1.8; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-outline-w {
+  font-family: 'Syne', sans-serif; font-size: .78rem; font-weight: 700;
+  letter-spacing: .05em; text-transform: uppercase;
+  background: transparent; color: rgba(255,255,255,.75);
+  border: 1.5px solid rgba(255,255,255,.25);
+  border-radius: 100px; padding: 14px 30px; cursor: pointer;
+  transition: all .35s;
+}
+.btn-outline-w:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.6); transform: translateY(-3px); color: white; }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  background: #060504; color: white;
+  padding: 80px 40px 40px;
+}
+.foot-grid {
+  max-width: 1320px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 60px; margin-bottom: 60px;
+}
+@media(max-width:900px){ .foot-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+@media(max-width:480px){ .foot-grid { grid-template-columns: 1fr; } }
+
+.foot-brand p { color: rgba(255,255,255,.35); font-size: .85rem; line-height: 1.75; margin-top: 16px; max-width: 280px; }
+.foot-badges { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+.foot-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.22);
+  border-radius: 100px; padding: 4px 14px;
+  font-family: 'Syne', sans-serif; font-size: .66rem; font-weight: 700;
+  letter-spacing: .07em; color: #fb923c;
+}
+.foot-col h5 {
+  font-family: 'Syne', sans-serif; font-size: .66rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,.28); margin-bottom: 20px;
+}
+.foot-col ul { list-style: none; }
+.foot-col ul li { margin-bottom: 11px; }
+.foot-col ul li a {
+  color: rgba(255,255,255,.48); font-size: .85rem;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
+  transition: color .3s, gap .3s;
+}
+.foot-col ul li a::before { content:''; width: 0; height: 1px; background: var(--orange); transition: width .3s; }
+.foot-col ul li a:hover { color: white; gap: 11px; }
+.foot-col ul li a:hover::before { width: 10px; }
+
+.foot-contact { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+.foot-contact svg { flex-shrink: 0; margin-top: 2px; }
+.foot-contact span { color: rgba(255,255,255,.42); font-size: .84rem; line-height: 1.6; }
+
+.foot-bottom {
+  max-width: 1320px; margin: 0 auto;
+  border-top: 1px solid rgba(255,255,255,.05);
+  padding-top: 32px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.foot-bottom p { color: rgba(255,255,255,.22); font-size: .77rem; }
+
+/* ══════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════ */
+.reveal { opacity: 0; }
+@keyframes revealUp    { from{opacity:0;transform:translateY(36px)} to{opacity:1;transform:translateY(0)} }
+@keyframes revealLeft  { from{opacity:0;transform:translateX(-36px)} to{opacity:1;transform:translateX(0)} }
+@keyframes revealRight { from{opacity:0;transform:translateX(36px)} to{opacity:1;transform:translateX(0)} }
+.reveal.up    { animation: revealUp    .7s cubic-bezier(.4,0,.2,1) forwards; }
+.reveal.left  { animation: revealLeft  .7s cubic-bezier(.4,0,.2,1) forwards; }
+.reveal.right { animation: revealRight .7s cubic-bezier(.4,0,.2,1) forwards; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE EXTRAS
+══════════════════════════════════════ */
+@media(max-width:768px){
+  .sec { padding: 80px 20px; }
+  #hdr { padding: 0 20px; }
+  footer { padding: 60px 20px 36px; }
+  .hero-content { padding: 0 20px 80px; }
+  .hero-stats { display: none; }
+  .scroll-cue { display: none; }
+  .refurb-left { padding: 40px 32px; }
+  .testi-card { padding: 40px 32px; }
+  .quote-mark { font-size: 5rem; }
+  nav { display: none; }
+  .btn-sign { display: none; }
+  .proc-grid::before { display: none; }
+}
+</style>
 </head>
-<body class="bg-gradient-primary min-h-screen">
+<body>
 
-    <!-- Navigation (same as homepage) -->
-    <nav class="bg-white/80 backdrop-blur-md fixed w-full z-50 shadow-sm">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-xl">CQC</span>
-                    </div>
-                    <span class="font-bold text-xl text-gray-800">Business Solutions</span>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">Home</a>
-                    <a href="about.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">About Us</a>
-                    <a href="services.html" class="hover-underline text-blue-600 font-semibold">Services</a>
-                    <a href="gallery.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">Gallery</a>
-                    <a href="contact.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">Contact</a>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <button class="relative">
-                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                        </svg>
-                        <span class="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
-                    </button>
-                    <button class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-2 rounded-lg hover:shadow-lg transition transform hover:scale-105">
-                        Sign In
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+<!-- CURSOR -->
+<div id="cursor"></div>
 
-    <!-- Page Header with Hero -->
-    <section class="pt-32 pb-16 px-6 relative overflow-hidden">
-        <!-- Background decorative elements -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full opacity-20 -mt-48 -mr-48"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-300 rounded-full opacity-20 -mb-32 -ml-32"></div>
-        
-        <div class="container mx-auto relative z-10">
-            <div class="text-center max-w-4xl mx-auto">
-                <div class="inline-block px-4 py-2 bg-blue-100 rounded-full mb-6">
-                    <span class="text-blue-800 font-semibold text-sm">⚡ END-TO-END OFFICE SOLUTIONS</span>
-                </div>
-                <h1 class="text-5xl md:text-6xl font-bold mb-6">
-                    Our <span class="text-gradient">Services</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8">
-                    From refurbishment to installation, rentals to components — we provide complete lifecycle solutions for your office furniture.
-                </p>
-                
-                <!-- Quick Stats Row -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                        <div class="text-3xl font-bold text-blue-600">28+</div>
-                        <div class="text-sm text-gray-600">Years Experience</div>
-                    </div>
-                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                        <div class="text-3xl font-bold text-blue-600">20k+</div>
-                        <div class="text-sm text-gray-600">Chairs Installed</div>
-                    </div>
-                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                        <div class="text-3xl font-bold text-blue-600">3 Day</div>
-                        <div class="text-sm text-gray-600">Refurb Turnaround</div>
-                    </div>
-                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                        <div class="text-3xl font-bold text-blue-600">9</div>
-                        <div class="text-sm text-gray-600">Provinces</div>
-                    </div>
-                </div>
-                
-                <!-- Service Tabs Navigation -->
-                <div class="flex flex-wrap justify-center gap-3 mt-12">
-                    <button class="service-tab active px-6 py-3 rounded-full font-semibold" data-service="all">All Services</button>
-                    <button class="service-tab px-6 py-3 bg-white rounded-full font-semibold text-gray-700 hover:shadow-lg" data-service="refurb">Refurbishment</button>
-                    <button class="service-tab px-6 py-3 bg-white rounded-full font-semibold text-gray-700 hover:shadow-lg" data-service="installation">Installation</button>
-                    <button class="service-tab px-6 py-3 bg-white rounded-full font-semibold text-gray-700 hover:shadow-lg" data-service="rental">Rental</button>
-                    <button class="service-tab px-6 py-3 bg-white rounded-full font-semibold text-gray-700 hover:shadow-lg" data-service="components">Components</button>
-                    <button class="service-tab px-6 py-3 bg-white rounded-full font-semibold text-gray-700 hover:shadow-lg" data-service="transport">Transport</button>
-                    <button class="service-tab px-6 py-3 bg-white rounded-full font-semibold text-gray-700 hover:shadow-lg" data-service="training">Training</button>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMob()">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="#">Home</a>
+  <a href="catalogue.html">Catalogue</a>
+  <a href="#" style="color:var(--orange)">Services</a>
+  <a href="contact.html">Contact</a>
+</div>
 
-    <!-- Main Services Grid -->
-    <section class="py-16 px-6">
-        <div class="container mx-auto">
-            <!-- Service 1: Refurbishment/Restoration (Featured) -->
-            <div class="service-card bg-white rounded-3xl shadow-2xl overflow-hidden mb-16" id="refurb">
-                <div class="grid md:grid-cols-2">
-                    <div class="p-8 md:p-12">
-                        <div class="inline-block px-4 py-2 bg-green-100 rounded-full mb-4">
-                            <span class="text-green-800 font-semibold text-sm">⭐ MAIN FOCUS</span>
-                        </div>
-                        <h2 class="text-4xl font-bold mb-4">Refurbishment <span class="text-gradient">& Restoration</span></h2>
-                        <p class="text-gray-600 text-lg mb-6">Breathe new life into your existing office furniture and save up to 60% compared to buying new.</p>
-                        
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-start space-x-3">
-                                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold">Complete Overhaul</h3>
-                                    <p class="text-gray-600">Mechanical repairs, gas lift replacement, mechanism fixes</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold">Reupholstery</h3>
-                                    <p class="text-gray-600">Fresh fabric, bonded leather, or PU options</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold">Deep Cleaning</h3>
-                                    <p class="text-gray-600">Industrial cleaning for fabric and leather</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-blue-50 p-4 rounded-xl mb-8">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <p class="text-sm text-gray-600">Turnaround Time</p>
-                                    <p class="text-2xl font-bold text-blue-600">3 Days</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-600">Loan Chairs</p>
-                                    <p class="text-2xl font-bold text-green-600">Available</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-600">Warranty</p>
-                                    <p class="text-2xl font-bold text-blue-600">6-12 Months</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex space-x-4">
-                            <button class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-8 py-3 rounded-lg hover:shadow-lg transition transform hover:scale-105 font-semibold">
-                                Request Refurbishment
-                            </button>
-                            <button class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 transition font-semibold">
-                                View Gallery
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="relative">
-                        <!-- Before/After Comparison Simulation -->
-                        <div class="h-full bg-gradient-to-br from-gray-800 to-gray-900 p-8 flex items-center">
-                            <div class="comparison-slider w-full">
-                                <img src="https://via.placeholder.com/600x800/2d3748/ffffff?text=After+Refurbishment" alt="Refurbished Chair" class="w-full">
-                                <div class="comparison-before">
-                                    <img src="https://via.placeholder.com/600x800/1a202c/ffffff?text=Before+Refurbishment" alt="Before Refurbishment" class="w-full">
-                                </div>
-                                <div class="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">Before</div>
-                                <div class="absolute bottom-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">After</div>
-                            </div>
-                            
-                            <!-- Savings Badge -->
-                            <div class="absolute -top-4 -right-4 bg-green-500 text-white px-6 py-3 rounded-full shadow-xl float-animation">
-                                <span class="font-bold text-xl">Save up to 60%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service 2: Project Installation -->
-            <div class="service-card bg-white rounded-3xl shadow-2xl overflow-hidden mb-16" id="installation">
-                <div class="grid md:grid-cols-2">
-                    <div class="order-2 md:order-1 relative">
-                        <div class="h-full bg-gradient-to-br from-blue-900 to-blue-700 p-8 flex items-center justify-center">
-                            <div class="text-center text-white">
-                                <div class="grid grid-cols-2 gap-6">
-                                    <div class="bg-white/20 backdrop-blur-lg rounded-2xl p-6">
-                                        <div class="text-4xl font-bold">20k+</div>
-                                        <div class="text-sm">Chairs Installed</div>
-                                    </div>
-                                    <div class="bg-white/20 backdrop-blur-lg rounded-2xl p-6">
-                                        <div class="text-4xl font-bold">50+</div>
-                                        <div class="text-sm">Projects</div>
-                                    </div>
-                                    <div class="bg-white/20 backdrop-blur-lg rounded-2xl p-6">
-                                        <div class="text-4xl font-bold">5</div>
-                                        <div class="text-sm">Major Banks</div>
-                                    </div>
-                                    <div class="bg-white/20 backdrop-blur-lg rounded-2xl p-6">
-                                        <div class="text-4xl font-bold">100%</div>
-                                        <div class="text-sm">H&S Compliant</div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Client Logos -->
-                                <div class="mt-8">
-                                    <p class="text-sm text-blue-200 mb-3">Trusted by:</p>
-                                    <div class="flex justify-center space-x-4">
-                                        <span class="bg-white/20 px-4 py-2 rounded-lg">Discovery</span>
-                                        <span class="bg-white/20 px-4 py-2 rounded-lg">Standard Bank</span>
-                                        <span class="bg-white/20 px-4 py-2 rounded-lg">Absa</span>
-                                        <span class="bg-white/20 px-4 py-2 rounded-lg">MTN</span>
-                                        <span class="bg-white/20 px-4 py-2 rounded-lg">Engen</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="p-8 md:p-12 order-1 md:order-2">
-                        <div class="inline-block px-4 py-2 bg-blue-100 rounded-full mb-4">
-                            <span class="text-blue-800 font-semibold text-sm">🔧 LARGE-SCALE PROJECTS</span>
-                        </div>
-                        <h2 class="text-4xl font-bold mb-4">Project <span class="text-gradient">Installation</span></h2>
-                        <p class="text-gray-600 text-lg mb-6">End-to-end installation services for corporate offices, managed by a dedicated, H&S compliant team.</p>
-                        
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-blue-600 font-bold">✓</span>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold">Full H&S Compliance</h3>
-                                    <p class="text-gray-600">H&S files, relevant PPE, medicals, transport — OCHS compliant</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-blue-600 font-bold">✓</span>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold">Dedicated Project Management</h3>
-                                    <p class="text-gray-600">Supervision and coordination for seamless execution</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-blue-600 font-bold">✓</span>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold">20,000+ Chairs Experience</h3>
-                                    <p class="text-gray-600">Proven track record with major corporate clients</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-gray-50 p-4 rounded-xl mb-8">
-                            <p class="text-sm text-gray-600 mb-2">Recent Projects:</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-white px-3 py-1 rounded-full text-sm shadow-sm">Discovery Head Office</span>
-                                <span class="bg-white px-3 py-1 rounded-full text-sm shadow-sm">Standard Bank Campus</span>
-                                <span class="bg-white px-3 py-1 rounded-full text-sm shadow-sm">Absa Towers</span>
-                                <span class="bg-white px-3 py-1 rounded-full text-sm shadow-sm">MTN Innovation Centre</span>
-                            </div>
-                        </div>
-                        
-                        <button class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-8 py-3 rounded-lg hover:shadow-lg transition transform hover:scale-105 font-semibold w-full md:w-auto">
-                            Request Installation Quote
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service 3: Rental Solutions -->
-            <div class="service-card bg-white rounded-3xl shadow-2xl overflow-hidden mb-16" id="rental">
-                <div class="grid md:grid-cols-2">
-                    <div class="p-8 md:p-12">
-                        <div class="inline-block px-4 py-2 bg-purple-100 rounded-full mb-4">
-                            <span class="text-purple-800 font-semibold text-sm">🔄 FLEXIBLE TERMS</span>
-                        </div>
-                        <h2 class="text-4xl font-bold mb-4">Rental <span class="text-gradient">Solutions</span></h2>
-                        <p class="text-gray-600 text-lg mb-6">Why buy when you can rent? Perfect for events, temporary offices, or project-based needs.</p>
-                        
-                        <div class="grid grid-cols-2 gap-4 mb-8">
-                            <div class="bg-gray-50 p-4 rounded-xl text-center">
-                                <div class="text-2xl font-bold text-blue-600">Daily</div>
-                                <div class="text-sm text-gray-600">From R45/chair</div>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-xl text-center">
-                                <div class="text-2xl font-bold text-blue-600">Weekly</div>
-                                <div class="text-sm text-gray-600">From R199/chair</div>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-xl text-center">
-                                <div class="text-2xl font-bold text-blue-600">Monthly</div>
-                                <div class="text-sm text-gray-600">From R399/chair</div>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-xl text-center">
-                                <div class="text-2xl font-bold text-blue-600">Long-term</div>
-                                <div class="text-sm text-gray-600">Custom quote</div>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-3 mb-8">
-                            <div class="flex items-center space-x-2">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Executive chairs, tub chairs, desks</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Delivery & collection included</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Maintenance included during rental period</span>
-                            </div>
-                        </div>
-                        
-                        <div class="flex space-x-4">
-                            <button class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-lg hover:shadow-lg transition transform hover:scale-105 font-semibold">
-                                Check Availability
-                            </button>
-                            <button class="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg hover:bg-purple-50 transition font-semibold">
-                                Rental Catalog
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="relative">
-                        <div class="h-full bg-gradient-to-br from-purple-900 to-purple-700 p-8 flex items-center">
-                            <div class="grid grid-cols-2 gap-4 w-full">
-                                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 text-white text-center">
-                                    <div class="text-5xl mb-2">🪑</div>
-                                    <div class="font-bold">Victor Series</div>
-                                    <div class="text-sm text-purple-200">R45/day</div>
-                                </div>
-                                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 text-white text-center">
-                                    <div class="text-5xl mb-2">🛋️</div>
-                                    <div class="font-bold">Mia Tub</div>
-                                    <div class="text-sm text-purple-200">R65/day</div>
-                                </div>
-                                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 text-white text-center">
-                                    <div class="text-5xl mb-2">💺</div>
-                                    <div class="font-bold">Pinnacle</div>
-                                    <div class="text-sm text-purple-200">R85/day</div>
-                                </div>
-                                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 text-white text-center">
-                                    <div class="text-5xl mb-2">📋</div>
-                                    <div class="font-bold">Desks</div>
-                                    <div class="text-sm text-purple-200">R120/day</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Badge -->
-                            <div class="absolute top-4 right-4 bg-yellow-500 text-white px-4 py-2 rounded-full shadow-lg">
-                                ⚡ Same-day delivery available
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service 4: Chair Components -->
-            <div class="service-card bg-white rounded-3xl shadow-2xl overflow-hidden mb-16" id="components">
-                <div class="grid md:grid-cols-2">
-                    <div class="order-2 md:order-1 relative">
-                        <div class="h-full bg-gradient-to-br from-gray-800 to-gray-900 p-8 flex items-center">
-                            <div class="grid grid-cols-3 gap-3 w-full">
-                                <div class="bg-gray-700 rounded-lg p-3 text-center">
-                                    <div class="text-3xl mb-1">🔧</div>
-                                    <div class="text-xs text-white">Gas Lifts</div>
-                                </div>
-                                <div class="bg-gray-700 rounded-lg p-3 text-center">
-                                    <div class="text-3xl mb-1">🔄</div>
-                                    <div class="text-xs text-white">Castors</div>
-                                </div>
-                                <div class="bg-gray-700 rounded-lg p-3 text-center">
-                                    <div class="text-3xl mb-1">💪</div>
-                                    <div class="text-xs text-white">Arms</div>
-                                </div>
-                                <div class="bg-gray-700 rounded-lg p-3 text-center">
-                                    <div class="text-3xl mb-1">⚙️</div>
-                                    <div class="text-xs text-white">Mechanisms</div>
-                                </div>
-                                <div class="bg-gray-700 rounded-lg p-3 text-center">
-                                    <div class="text-3xl mb-1">🪑</div>
-                                    <div class="text-xs text-white">Bases</div>
-                                </div>
-                                <div class="bg-gray-700 rounded-lg p-3 text-center">
-                                    <div class="text-3xl mb-1">🧵</div>
-                                    <div class="text-xs text-white">Upholstery</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Import badge -->
-                            <div class="absolute bottom-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-sm">
-                                Local & International Sourcing
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="p-8 md:p-12 order-1 md:order-2">
-                        <div class="inline-block px-4 py-2 bg-gray-100 rounded-full mb-4">
-                            <span class="text-gray-800 font-semibold text-sm">🔩 QUALITY PARTS</span>
-                        </div>
-                        <h2 class="text-4xl font-bold mb-4">Chair <span class="text-gradient">Components</span></h2>
-                        <p class="text-gray-600 text-lg mb-6">We stock a range of quality components and can source locally or import international brands as needed.</p>
-                        
-                        <div class="grid grid-cols-2 gap-4 mb-8">
-                            <div>
-                                <h3 class="font-semibold mb-2">In Stock:</h3>
-                                <ul class="space-y-2 text-gray-600">
-                                    <li class="flex items-center space-x-2">
-                                        <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
-                                        <span>Class 3 & 4 Gas Lifts</span>
-                                    </li>
-                                    <li class="flex items-center space-x-2">
-                                        <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
-                                        <span>Nylon & PA Bases</span>
-                                    </li>
-                                    <li class="flex items-center space-x-2">
-                                        <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
-                                        <span>Flexi & Fixed Arms</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold mb-2">Can Source:</h3>
-                                <ul class="space-y-2 text-gray-600">
-                                    <li class="flex items-center space-x-2">
-                                        <span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
-                                        <span>International brands</span>
-                                    </li>
-                                    <li class="flex items-center space-x-2">
-                                        <span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
-                                        <span>Obsolete parts</span>
-                                    </li>
-                                    <li class="flex items-center space-x-2">
-                                        <span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
-                                        <span>Custom mechanisms</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-blue-50 p-4 rounded-xl mb-8">
-                            <p class="text-sm font-semibold">🔍 Can't find a part? We'll source it for you.</p>
-                        </div>
-                        
-                        <button class="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-8 py-3 rounded-lg hover:shadow-lg transition transform hover:scale-105 font-semibold">
-                            Browse Components
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service 5: Transportation Solutions -->
-            <div class="service-card bg-white rounded-3xl shadow-2xl overflow-hidden mb-16" id="transport">
-                <div class="grid md:grid-cols-2">
-                    <div class="p-8 md:p-12">
-                        <div class="inline-block px-4 py-2 bg-yellow-100 rounded-full mb-4">
-                            <span class="text-yellow-800 font-semibold text-sm">🚚 FLEET SERVICES</span>
-                        </div>
-                        <h2 class="text-4xl font-bold mb-4">Transportation <span class="text-gradient">Solutions</span></h2>
-                        <p class="text-gray-600 text-lg mb-6">Own small fleet plus strategic partnerships to handle any size delivery.</p>
-                        
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold">Own Fleet</h3>
-                                    <p class="text-gray-600">For quick, reliable local deliveries</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                        <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold">National Coverage</h3>
-                                    <p class="text-gray-600">Through strategic partners across SA</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <p class="text-gray-700 font-semibold mb-4">"No job is too big for us."</p>
-                        
-                        <button class="bg-gradient-to-r from-yellow-600 to-yellow-700 text-white px-8 py-3 rounded-lg hover:shadow-lg transition transform hover:scale-105 font-semibold">
-                            Get a Delivery Quote
-                        </button>
-                    </div>
-                    
-                    <div class="relative">
-                        <div class="h-full bg-gradient-to-br from-yellow-700 to-yellow-800 p-8 flex items-center justify-center">
-                            <div class="text-center text-white">
-                                <div class="text-8xl mb-4">🚛</div>
-                                <div class="text-2xl font-bold">Same-day delivery</div>
-                                <div class="text-yellow-200">available in Gauteng</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service 6: Training Solutions -->
-            <div class="service-card bg-white rounded-3xl shadow-2xl overflow-hidden mb-16" id="training">
-                <div class="grid md:grid-cols-2">
-                    <div class="order-2 md:order-1 relative">
-                        <div class="h-full bg-gradient-to-br from-indigo-700 to-indigo-800 p-8 flex items-center justify-center">
-                            <div class="text-white text-center">
-                                <div class="text-6xl mb-4">📚</div>
-                                <div class="text-2xl font-bold mb-2">On-site & Off-site</div>
-                                <p class="text-indigo-200">Training solutions tailored to your business needs</p>
-                                
-                                <div class="mt-6 grid grid-cols-2 gap-3">
-                                    <div class="bg-white/20 rounded-lg p-2 text-sm">Health & Safety</div>
-                                    <div class="bg-white/20 rounded-lg p-2 text-sm">Ergonomics</div>
-                                    <div class="bg-white/20 rounded-lg p-2 text-sm">Furniture Care</div>
-                                    <div class="bg-white/20 rounded-lg p-2 text-sm">Compliance</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="p-8 md:p-12 order-1 md:order-2">
-                        <div class="inline-block px-4 py-2 bg-indigo-100 rounded-full mb-4">
-                            <span class="text-indigo-800 font-semibold text-sm">📝 SKILLS DEVELOPMENT</span>
-                        </div>
-                        <h2 class="text-4xl font-bold mb-4">Training <span class="text-gradient">Solutions</span></h2>
-                        <p class="text-gray-600 text-lg mb-6">On-site and off-site training programs to meet business requirements and comply with current legislation.</p>
-                        
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-center space-x-2">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Office ergonomics & posture</span>
-                            </li>
-                            <li class="flex items-center space-x-2">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Furniture maintenance & care</span>
-                            </li>
-                            <li class="flex items-center space-x-2">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Health & Safety compliance</span>
-                            </li>
-                        </ul>
-                        
-                        <button class="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-8 py-3 rounded-lg hover:shadow-lg transition transform hover:scale-105 font-semibold">
-                            Request Training Info
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service 7: Strategic Partnerships -->
-            <div class="service-card bg-white rounded-3xl shadow-2xl overflow-hidden" id="partnerships">
-                <div class="grid md:grid-cols-2">
-                    <div class="p-8 md:p-12">
-                        <div class="inline-block px-4 py-2 bg-teal-100 rounded-full mb-4">
-                            <span class="text-teal-800 font-semibold text-sm">🤝 COLLABORATION</span>
-                        </div>
-                        <h2 class="text-4xl font-bold mb-4">Strategic <span class="text-gradient">Partnerships</span></h2>
-                        <p class="text-gray-600 text-lg mb-6">Collaborative relationships that expand reach and deliver better solutions.</p>
-                        
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-teal-600 font-bold">✓</span>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold">Access to New Markets</h3>
-                                    <p class="text-gray-600">Expanding customer base through collaboration</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-teal-600 font-bold">✓</span>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold">Leverage Individual Strengths</h3>
-                                    <p class="text-gray-600">Independent but working together for client benefit</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <p class="text-gray-700 mb-4"><span class="font-bold">National Partners:</span> KZN, Western Cape, Free State, Eastern Cape</p>
-                        
-                        <button class="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-8 py-3 rounded-lg hover:shadow-lg transition transform hover:scale-105 font-semibold">
-                            Become a Partner
-                        </button>
-                    </div>
-                    
-                    <div class="relative">
-                        <div class="h-full bg-gradient-to-br from-teal-700 to-teal-800 p-8 flex items-center justify-center">
-                            <div class="grid grid-cols-2 gap-4 w-full">
-                                <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-white text-center">
-                                    <div class="font-bold">KZN</div>
-                                </div>
-                                <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-white text-center">
-                                    <div class="font-bold">WP</div>
-                                </div>
-                                <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-white text-center">
-                                    <div class="font-bold">Free State</div>
-                                </div>
-                                <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-white text-center">
-                                    <div class="font-bold">Eastern Cape</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process / How It Works -->
-    <section class="py-16 px-6 bg-gradient-to-r from-blue-50 to-white">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-blue-600 font-semibold uppercase tracking-wider">Simple Process</span>
-                <h2 class="text-4xl font-bold mt-2 mb-4">How Our <span class="text-gradient">Services Work</span></h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Straightforward steps from request to completion</p>
-            </div>
-            
-            <div class="grid md:grid-cols-4 gap-8 relative">
-                <!-- Step 1 -->
-                <div class="text-center relative">
-                    <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold shadow-lg">1</div>
-                    <h3 class="font-bold text-xl mb-2">Request</h3>
-                    <p class="text-gray-600">Fill out form, upload photos, describe your needs</p>
-                    <div class="process-connector hidden md:block"></div>
-                </div>
-                
-                <!-- Step 2 -->
-                <div class="text-center relative">
-                    <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold shadow-lg">2</div>
-                    <h3 class="font-bold text-xl mb-2">Quote</h3>
-                    <p class="text-gray-600">24-hour response with detailed quote</p>
-                    <div class="process-connector hidden md:block"></div>
-                </div>
-                
-                <!-- Step 3 -->
-                <div class="text-center relative">
-                    <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold shadow-lg">3</div>
-                    <h3 class="font-bold text-xl mb-2">Service</h3>
-                    <p class="text-gray-600">We complete the work (3-day turnaround)</p>
-                    <div class="process-connector hidden md:block"></div>
-                </div>
-                
-                <!-- Step 4 -->
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold shadow-lg">4</div>
-                    <h3 class="font-bold text-xl mb-2">Enjoy</h3>
-                    <p class="text-gray-600">Quality results with warranty</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-16 px-6">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-blue-600 font-semibold uppercase tracking-wider">Client Feedback</span>
-                <h2 class="text-4xl font-bold mt-2 mb-4">What Our <span class="text-gradient">Clients Say</span></h2>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
-                    <p class="text-gray-600 mb-4">"CQC refurbished 200 chairs for our office. Saved us over 40% compared to new. Quality is excellent and turnaround was just 3 days."</p>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">JD</div>
-                        <div>
-                            <h4 class="font-bold">John Dixon</h4>
-                            <p class="text-sm text-gray-500">Facilities Manager, Discovery</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
-                    <p class="text-gray-600 mb-4">"The installation team was professional, H&S compliant, and completed 500 chairs in one weekend. Minimal disruption to our operations."</p>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">SN</div>
-                        <div>
-                            <h4 class="font-bold">Sarah Ndlovu</h4>
-                            <p class="text-sm text-gray-500">Procurement, Standard Bank</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
-                    <p class="text-gray-600 mb-4">"Needed 30 chairs for a conference urgently. Rental process was seamless, delivery on time, and they handled collection too."</p>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">MB</div>
-                        <div>
-                            <h4 class="font-bold">Mike Botha</h4>
-                            <p class="text-sm text-gray-500">Event Coordinator</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Carousel Dots -->
-            <div class="flex justify-center space-x-2 mt-8">
-                <button class="dot active w-3 h-3 rounded-full bg-gray-300"></button>
-                <button class="dot w-3 h-3 rounded-full bg-gray-300"></button>
-                <button class="dot w-3 h-3 rounded-full bg-gray-300"></button>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-16 px-6 bg-gradient-to-r from-blue-50 to-white">
-        <div class="container mx-auto max-w-3xl">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4">Frequently Asked <span class="text-gradient">Questions</span></h2>
-            </div>
-            
-            <div class="space-y-4">
-                <!-- FAQ 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
-                        <span>How long does refurbishment take?</span>
-                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div class="px-6 pb-6 text-gray-600">
-                        Our standard turnaround is 3 days. We also offer same-day service for minor repairs and loan chairs if needed for business continuity.
-                    </div>
-                </div>
-                
-                <!-- FAQ 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
-                        <span>Do you offer warranties on refurbished chairs?</span>
-                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <!-- FAQ 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
-                        <span>What areas do you service?</span>
-                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <!-- FAQ 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
-                        <span>Can you source parts for any chair brand?</span>
-                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="py-16 px-6">
-        <div class="container mx-auto max-w-4xl">
-            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-12 text-center text-white relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mt-20 -mr-20"></div>
-                <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full -mb-20 -ml-20"></div>
-                
-                <h2 class="text-4xl font-bold mb-4 relative z-10">Need a Service Not Listed?</h2>
-                <p class="text-xl text-blue-100 mb-8 relative z-10">We customize solutions for unique requirements</p>
-                
-                <div class="flex flex-wrap justify-center gap-4 relative z-10">
-                    <a href="#" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition transform hover:scale-105">
-                        Contact Us
-                    </a>
-                    <a href="#" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition transform hover:scale-105">
-                        011 473 1467
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer (same as homepage) -->
-    <footer class="bg-gray-900 text-white py-12 px-6">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-xl">CQC</span>
-                        </div>
-                        <span class="font-bold text-xl">Business Solutions</span>
-                    </div>
-                    <p class="text-gray-400">Level 1 B-BBEE Contributor with 135% Procurement Recognition. 100% Black Owned with 31% Black Women Ownership.</p>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Home</a></li>
-                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition">Services</a></li>
-                        <li><a href="#" class="hover:text-white transition">Gallery</a></li>
-                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Our Products</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Executive Chairs</a></li>
-                        <li><a href="#" class="hover:text-white transition">Industrial Seating</a></li>
-                        <li><a href="#" class="hover:text-white transition">Soft Seating</a></li>
-                        <li><a href="#" class="hover:text-white transition">Refurbished Furniture</a></li>
-                        <li><a href="#" class="hover:text-white transition">Chair Components</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Services</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Refurbishment</a></li>
-                        <li><a href="#" class="hover:text-white transition">Project Installation</a></li>
-                        <li><a href="#" class="hover:text-white transition">Rental Solutions</a></li>
-                        <li><a href="#" class="hover:text-white transition">Transportation</a></li>
-                        <li><a href="#" class="hover:text-white transition">Training Solutions</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                <p>© 2026 CQC Business Solutions (PTY) LTD. All rights reserved. NB Copyright protected.</p>
-                <p class="mt-2">Est. 2021 • Gauteng, South Africa • National Footprint: KZN, WP, Free State, Eastern Cape</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Action Button -->
-    <div class="fixed bottom-8 right-8">
-        <button class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition transform hover:scale-110 float-animation">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-            </svg>
-        </button>
+<!-- ════════════════ HEADER ════════════════ -->
+<header id="hdr">
+  <div class="hdr-inner">
+    <div class="logo-wrap" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <div>
+        <div class="logo-name" id="lname"></div>
+        <div class="logo-sub"  id="lsub"></div>
+      </div>
     </div>
 
-    <!-- Simple JavaScript -->
-    <script>
-        // Service tab filtering (simulated)
-        document.querySelectorAll('.service-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.service-tab').forEach(t => {
-                    t.classList.remove('active');
-                    t.classList.add('bg-white');
-                    t.classList.remove('text-white');
-                });
-                
-                this.classList.add('active');
-                this.classList.remove('bg-white');
-                
-                const service = this.dataset.service;
-                if(service === 'all') {
-                    document.querySelectorAll('.service-card').forEach(card => {
-                        card.style.display = 'block';
-                    });
-                } else {
-                    document.querySelectorAll('.service-card').forEach(card => {
-                        if(card.id === service) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                }
-            });
-        });
-        
-        // FAQ accordion
-        document.querySelectorAll('.bg-white.rounded-xl button').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const content = this.nextElementSibling;
-                if(content && content.tagName === 'DIV') {
-                    if(content.style.display === 'none' || !content.style.display) {
-                        content.style.display = 'block';
-                    } else {
-                        content.style.display = 'none';
-                    }
-                }
-            });
-        });
-        
-        // Initially hide FAQ answers except first
-        document.querySelectorAll('.bg-white.rounded-xl div.px-6').forEach((div, index) => {
-            if(index > 0) div.style.display = 'none';
-        });
-    </script>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="catalogue.html">Catalogue</a>
+      <a href="#" class="active">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <!--<div class="hdr-actions">
+      <div class="cart-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <div class="cart-dot">3</div>
+      </div>
+      <button style="background:none;border:none;cursor:pointer;color:white;padding:6px;display:none;" id="mobBtn" class="md:hidden" onclick="openMob()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>-->
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-fog"></div>
+  <div class="hero-grain"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- floating stats -->
+  <div class="hero-stats">
+    <div class="hstat">
+      <div class="hstat-num grad-text">3 Days</div>
+      <div class="hstat-lbl">Turnaround Time</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num grad-text">60%</div>
+      <div class="hstat-lbl">Average Savings</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num grad-text">6–12M</div>
+      <div class="hstat-lbl">Service Warranty</div>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#f97316"/></svg>
+      End-to-End Workspace Solutions
+    </div>
+    <h1>Every service<br><em>your office</em><br>will ever need.</h1>
+    <p>From expert refurbishment and component sourcing to flexible rentals and nationwide transport — we handle the full lifecycle of your workspace furniture.</p>
+    <div class="hero-btns">
+      <button class="btn-primary"><span>Request a Quote</span></button>
+      <button href="catalogue.html  " class="btn-ghost-white">View Catalogue</button>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <div class="scroll-bar"></div>
+    <span>Discover</span>
+  </div>
+</section>
+
+<!-- ════════════ MARQUEE ════════════ -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <!-- repeated twice for seamless loop -->
+    <span class="marquee-item"><span class="marquee-dot"></span>Refurbishment &amp; Restoration</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Chair Components</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Rental Solutions</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Strategic Partnerships</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Transportation</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Training Solutions</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Nationwide Coverage</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Level 1 B-BBEE</span>
+
+    <span class="marquee-item"><span class="marquee-dot"></span>Refurbishment &amp; Restoration</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Chair Components</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Rental Solutions</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Strategic Partnerships</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Transportation</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Training Solutions</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Nationwide Coverage</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Level 1 B-BBEE</span>
+  </div>
+</div>
+
+<!-- ════════ FEATURED: REFURBISHMENT ════════ -->
+<section class="sec refurb-section">
+  <div class="cnt">
+    <div style="text-align:center;margin-bottom:56px;" class="reveal up">
+      <div class="sec-label">Main Focus</div>
+      <h2 class="sec-title">Our <span class="grad-text">Flagship</span> Service</h2>
+      <p style="color:#6b7280;margin-top:14px;max-width:480px;margin:14px auto 0;font-size:.92rem;line-height:1.8;">Saving South African businesses thousands by breathing new life into existing office furniture.</p>
+    </div>
+
+    <div class="refurb-grid reveal up">
+      <!-- LEFT -->
+      <div class="refurb-left">
+        <div class="refurb-badge">
+          <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Primary Service
+        </div>
+        <h2>Refurbishments<br>&amp; <span class="grad-text">Restoration</span></h2>
+        <p>Our core focus — helping home users and SMEs refurbish existing office furniture at genuinely affordable prices. Keep your costs variable and money where it belongs: in your business.</p>
+
+        <ul class="check-list">
+          <li class="check-item">
+            <div class="check-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
+            </div>
+            <div class="check-text">
+              <strong>Complete Mechanical Overhaul</strong>
+              <span>Gas lift replacement, mechanism repairs, base and castor swaps</span>
+            </div>
+          </li>
+          <li class="check-item">
+            <div class="check-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+            </div>
+            <div class="check-text">
+              <strong>Reupholstery &amp; Refinishing</strong>
+              <span>Premium fabric, bonded leather, or PU — your choice of colour &amp; finish</span>
+            </div>
+          </li>
+          <li class="check-item">
+            <div class="check-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            </div>
+            <div class="check-text">
+              <strong>Deep Cleaning &amp; Sanitization</strong>
+              <span>Industrial-grade cleaning for fabric, leather, mesh, and wood surfaces</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="mstat-bar">
+          <div class="mstat">
+            <div class="mstat-val">3 Days</div>
+            <div class="mstat-key">Turnaround</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val">Available</div>
+            <div class="mstat-key">Loan Chairs</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val">6–12M</div>
+            <div class="mstat-key">Warranty</div>
+          </div>
+        </div>
+
+        <div class="refurb-cta">
+          <button class="btn-dark">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.85 19.79 19.79 0 01.09 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Request Service
+          </button>
+          <button class="btn-txt">
+            See examples
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT IMAGE PANEL -->
+      <div class="refurb-right">
+        <div class="refurb-right-img"></div>
+        <div class="refurb-right-overlay"></div>
+        <div class="refurb-right-badge">
+          <div>
+            <div class="refurb-save">Save 60%</div>
+            <div class="refurb-save-sub">vs. buying brand new</div>
+          </div>
+          <div class="refurb-tag">
+            Certified<br>Quality
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ BENTO SERVICES GRID ════════════ -->
+<section class="sec services-section">
+  <div class="cnt">
+    <div style="text-align:center;margin-bottom:56px;" class="reveal up">
+      <div class="sec-label">All Services</div>
+      <h2 class="sec-title">A Complete <span class="grad-text">Ecosystem</span></h2>
+      <p style="color:#6b7280;margin-top:14px;max-width:460px;margin:14px auto 0;font-size:.92rem;line-height:1.8;">Everything your office needs — from a single component to nationwide furniture logistics.</p>
+    </div>
+
+    <div class="bento reveal up">
+
+      <!-- COMPONENTS -->
+      <div class="scard scard-light sc-components" style="padding:0;border-radius:26px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.05);border:1px solid rgba(249,115,22,.08);transition:all .45s cubic-bezier(.4,0,.2,1);">
+        <div class="scard-body" style="padding:36px;min-height:0;display:flex;flex-direction:column;background:white;">
+          <div class="scard-icon" style="background:linear-gradient(135deg,#f0f9ff,#bae6fd);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
+            </svg>
+          </div>
+          <div class="scard-tag light">Components</div>
+          <div class="scard-title dark">Quality Chair<br>Components</div>
+          <p class="scard-desc muted">We source locally and import international brands — from gas lifts to premium mechanisms — so your repairs are always done right.</p>
+          <div class="chip-row">
+            <span class="chip smoke">Gas Lifts</span>
+            <span class="chip smoke">Castors</span>
+            <span class="chip smoke">Armrests</span>
+            <span class="chip smoke">Mechanisms</span>
+            <span class="chip smoke">Bases</span>
+          </div>
+          <button class="scard-link orange">
+            Request Components
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- RENTAL -->
+      <div class="scard scard-img sc-rental" style="border-radius:26px;">
+        <div class="scard-bg" style="background-image:url('./assets/rental.png');"></div>
+        <div class="scard-fog" style="background:linear-gradient(160deg,rgba(10,8,4,.2) 0%,rgba(10,8,4,.88) 100%);"></div>
+        <div class="scard-body">
+          <div class="scard-icon" style="background:rgba(249,115,22,.2);border:1px solid rgba(249,115,22,.35);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+            </svg>
+          </div>
+          <div class="scard-tag on-dark">Rental</div>
+          <div class="scard-title white">Flexible Rental<br>Solutions</div>
+          <p class="scard-desc white-muted">Chairs and desks available daily, weekly, or monthly. Perfect for events, pop-up offices, or try-before-you-buy.</p>
+          <div class="price-grid">
+            <div class="pgrid-item">
+              <div class="pgrid-period">Daily</div>
+              <div class="pgrid-price">R45<span style="font-size:.9rem;">+</span></div>
+              <div class="pgrid-sub">per unit</div>
+            </div>
+            <div class="pgrid-item">
+              <div class="pgrid-period">Weekly</div>
+              <div class="pgrid-price">R199<span style="font-size:.9rem;">+</span></div>
+              <div class="pgrid-sub">per unit</div>
+            </div>
+            <div class="pgrid-item">
+              <div class="pgrid-period">Monthly</div>
+              <div class="pgrid-price">R399<span style="font-size:.9rem;">+</span></div>
+              <div class="pgrid-sub">per unit</div>
+            </div>
+          </div>
+          <button class="scard-link white">
+            Inquire About Rental
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- TRANSPORT -->
+      <div class="scard scard-img sc-transport" style="border-radius:26px;">
+        <div class="scard-bg" style="background-image:url('./assets/transport.png');"></div>
+        <div class="scard-fog" style="background:linear-gradient(170deg,rgba(5,18,34,.15) 0%,rgba(5,18,34,.9) 100%);"></div>
+        <div class="scard-body" style="min-height:320px;">
+          <div class="scard-icon" style="background:rgba(56,189,248,.18);border:1px solid rgba(56,189,248,.35);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8">
+              <rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <div class="scard-tag on-dark">Logistics</div>
+          <div class="scard-title white" style="font-size:1.4rem;">Transportation<br>Solutions</div>
+          <p class="scard-desc white-muted" style="font-size:.8rem;">Own fleet + strategic partners for any scale of delivery, nationwide.</p>
+          <div style="margin-top:14px;">
+            <div class="dcheck" style="color:rgba(255,255,255,.6);">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#38bdf8"><polyline points="20 6 9 17 4 12"/></svg>
+              Same-day delivery available
+            </div>
+            <div class="dcheck" style="color:rgba(255,255,255,.6);margin-top:8px;">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#38bdf8"><polyline points="20 6 9 17 4 12"/></svg>
+              All 9 provinces covered
+            </div>
+          </div>
+          <button class="scard-link white">
+            Get a Quote
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- PARTNERSHIPS -->
+      <div class="scard scard-light sc-partners" style="border-radius:26px;">
+        <div class="scard-body" style="min-height:320px;background:linear-gradient(160deg,#fff7f0,white);padding:36px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div class="scard-icon" style="background:linear-gradient(135deg,#fdf4ff,#f3e8ff);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <div class="scard-tag" style="background:rgba(168,85,247,.1);color:#a855f7;">Partnership</div>
+            <div class="scard-title dark" style="font-size:1.4rem;">Strategic<br>Partnerships</div>
+            <p class="scard-desc muted" style="font-size:.8rem;">Collaborate with progressive organisations. Expand your customer base and access markets across SA.</p>
+          </div>
+          <div>
+            <div class="dot-row">
+              <div class="loc-dot">KZN</div>
+              <div class="loc-dot">Western Cape</div>
+              <div class="loc-dot">Free State</div>
+              <div class="loc-dot">Eastern Cape</div>
+            </div>
+            <button class="scard-link orange" style="margin-top:16px;">
+              Become a Partner
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRAINING -->
+      <div class="scard scard-img sc-training" style="border-radius:26px;">
+        <div class="scard-bg" style="background-image:url('https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=700&q=75&auto=format&fit=crop');"></div>
+        <div class="scard-fog" style="background:linear-gradient(170deg,rgba(10,8,4,.1) 0%,rgba(10,8,4,.88) 100%);"></div>
+        <div class="scard-body" style="min-height:320px;">
+          <div class="scard-icon" style="background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8">
+              <path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/>
+            </svg>
+          </div>
+          <div class="scard-tag on-dark">Training</div>
+          <div class="scard-title white" style="font-size:1.4rem;">Training<br>Solutions</div>
+          <p class="scard-desc white-muted" style="font-size:.8rem;">On-site and off-site training — ergonomics, safety, furniture maintenance — conforming to current legislation.</p>
+          <button class="scard-link white" style="margin-top:16px;">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /bento -->
+  </div>
+</section>
+
+<!-- ════════════ PROCESS ════════════ -->
+<section class="sec process-section">
+  <div class="process-bg"></div>
+  <div class="proc-orb1"></div>
+  <div class="proc-orb2"></div>
+  <div class="cnt">
+    <div style="text-align:center;margin-bottom:72px;" class="reveal up">
+      <div class="sec-label" style="background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.3);">Our Process</div>
+      <h2 class="sec-title" style="color:white;">Simple. Transparent. <span class="grad-text">Fast.</span></h2>
+      <p style="color:rgba(255,255,255,.4);margin-top:14px;font-size:.92rem;max-width:420px;margin:14px auto 0;line-height:1.8;">From first contact to final delivery in as little as 72 hours.</p>
+    </div>
+
+    <div class="proc-grid reveal up">
+      <div class="proc-step">
+        <div class="proc-num">01</div>
+        <h4>Request</h4>
+        <p>Fill out our form, upload photos, and describe your needs. Takes less than 3 minutes.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">02</div>
+        <h4>Quote</h4>
+        <p>We respond within 24 hours with a detailed, transparent quote — no hidden fees.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">03</div>
+        <h4>Service</h4>
+        <p>Our technicians complete the work to spec with loan chairs available during the wait.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">04</div>
+        <h4>Enjoy</h4>
+        <p>Receive your revitalised furniture with full warranty documentation included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ TESTIMONIAL ════════════ -->
+<section class="sec testi-section">
+  <div class="cnt">
+    <div style="text-align:center;margin-bottom:56px;" class="reveal up">
+      <div class="sec-label">Client Stories</div>
+      <h2 class="sec-title">Trusted by <span class="grad-text">South Africa's Best</span></h2>
+    </div>
+
+    <div class="testi-card reveal up">
+      <div class="quote-mark">"</div>
+      <div class="stars">
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testi-text">
+        "CQC refurbished 200 chairs for our Sandton office. Saved us over 40% versus buying new — and the quality is genuinely excellent. The 3-day turnaround was remarkable. Their component sourcing also saved chairs we thought were beyond saving."
+      </p>
+      <div class="testi-author">
+        <div class="testi-avatar">JD</div>
+        <div>
+          <div class="testi-name">John Dixon</div>
+          <div class="testi-role">Facilities Manager, Discovery Health</div>
+        </div>
+        <div class="testi-trust">
+          Verified client<br>
+          <span style="color:#f59e0b;">★</span> 500+ businesses served
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ WHY CQC ════════════ -->
+<section class="sec why-section">
+  <div class="cnt">
+    <div style="text-align:center;margin-bottom:56px;" class="reveal up">
+      <div class="sec-label">Why Choose Us</div>
+      <h2 class="sec-title">The CQC <span class="grad-text">Difference</span></h2>
+    </div>
+
+    <div class="why-grid reveal up">
+      <div class="why-card">
+        <div class="why-icon" style="background:linear-gradient(135deg,#fff7ed,#fed7aa);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h4>24-Hour Response</h4>
+        <p>Every quote request is acknowledged and responded to within one business day, always.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:linear-gradient(135deg,#f0f9ff,#bae6fd);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <h4>Warranty Covered</h4>
+        <p>Every service we deliver comes with a 6 to 12-month warranty as standard.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:linear-gradient(135deg,#fdf4ff,#e9d5ff);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+          </svg>
+        </div>
+        <h4>Expert Technicians</h4>
+        <p>Highly trained specialists with 28+ years of combined industry experience on the tools.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:linear-gradient(135deg,#f0fdf4,#bbf7d0);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h4>Level 1 B-BBEE</h4>
+        <p>100% black-owned. 135% procurement recognition, giving your company maximum benefit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CTA ════════════ -->
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="cta-fog"></div>
+  <div class="cta-orb"></div>
+  <div class="cta-inner reveal up">
+    <div class="sec-label" style="background:rgba(249,115,22,.16);border-color:rgba(249,115,22,.32);color:#fb923c;display:inline-flex;margin-bottom:28px;">Ready to Begin?</div>
+    <h2>Let's transform<br><em style="font-style:italic;color:rgba(255,255,255,.85);">your workspace</em></h2>
+    <p>Get in touch for a free consultation. No obligation, no pressure — just expert advice from people who care about your office.</p>
+    <div class="cta-btns">
+      <button class="btn-primary" style="padding:16px 38px;font-size:.82rem;"><span>Request a Free Quote</span></button>
+      <button class="btn-outline-w">Call 011 000 0000</button>
+    </div>
+    <p style="color:rgba(255,255,255,.28);font-size:.75rem;margin-top:24px;letter-spacing:.04em;">Or email info@cqc.co.za — we reply within 24 hours</p>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="logo-mark">CQC</div>
+        <span style="font-family:'Instrument Serif',serif;font-size:1.15rem;">Business Solutions</span>
+      </div>
+      <p>Premium workspace furniture and complete lifecycle solutions for South African businesses. Proudly black-owned.</p>
+      <div class="foot-badges">
+        <div class="foot-badge">🇿🇦 Proudly SA</div>
+        <div class="foot-badge" style="background:rgba(56,189,248,.1);border-color:rgba(56,189,248,.22);color:#7dd3fc;">Level 1 B-BBEE</div>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Catalogue</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Refurbishment</a></li>
+        <li><a href="#">Chair Components</a></li>
+        <li><a href="#">Rental Solutions</a></li>
+        <li><a href="#">Transportation</a></li>
+        <li><a href="#">Training</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Contact</h5>
+      <div class="foot-contact">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Johannesburg, Gauteng,<br>South Africa</span>
+      </div>
+      <div class="foot-contact">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.85 19.79 19.79 0 01.09 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <span>011 000 0000</span>
+      </div>
+      <div class="foot-contact">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>info@cqc.co.za</span>
+      </div>
+      <div class="foot-contact">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Mon–Fri · 08:00 – 17:00</span>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2025 CQC Business Solutions. All rights reserved.</p>
+    <p>Privacy Policy · Terms of Service</p>
+  </div>
+</footer>
+
+<script>
+/* ── Custom cursor ── */
+const cur = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top  = e.clientY + 'px';
+});
+document.querySelectorAll('button, a, .scard, .why-card, .proc-step, .bbbee-stat-card').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.classList.add('expand'));
+  el.addEventListener('mouseleave', () => cur.classList.remove('expand'));
+});
+
+/* ── Header scroll ── */
+const hdr   = document.getElementById('hdr');
+const lname = document.getElementById('lname');
+const lsub  = document.getElementById('lsub');
+const mobBtn= document.getElementById('mobBtn');
+
+window.addEventListener('scroll', () => {
+  const s = window.scrollY > 60;
+  hdr.classList.toggle('solid', s);
+  lname.style.color = s ? 'var(--ink)' : 'white';
+  lsub.style.color  = s ? '#9ca3af' : 'rgba(255,255,255,.45)';
+  mobBtn.style.color = s ? '#374151' : 'white';
+});
+
+/* ── Hero parallax ── */
+const hBg = document.getElementById('heroBg');
+setTimeout(() => hBg.classList.add('ready'), 80);
+window.addEventListener('scroll', () => {
+  hBg.style.transform = `scale(1) translateY(${window.scrollY * .28}px)`;
+});
+
+/* ── Mobile menu ── */
+function openMob()  { document.getElementById('mobMenu').classList.add('open');  document.body.style.overflow='hidden'; }
+function closeMob() { document.getElementById('mobMenu').classList.remove('open'); document.body.style.overflow=''; }
+
+/* ── Mobile button visibility ── */
+function handleResize() {
+  mobBtn.style.display = window.innerWidth < 768 ? 'block' : 'none';
+}
+window.addEventListener('resize', handleResize);
+handleResize();
+
+/* ── Scroll reveal ── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    if (el.classList.contains('up'))    el.classList.add('up');
+    if (el.classList.contains('left'))  el.classList.add('left');
+    if (el.classList.contains('right')) el.classList.add('right');
+    el.style.animationDelay = el.dataset.delay || '0s';
+    ro.unobserve(el);
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -55px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+/* ── Mouse-parallax on floating stats ── */
+document.addEventListener('mousemove', e => {
+  const mx = (e.clientX / window.innerWidth  - .5) * 14;
+  const my = (e.clientY / window.innerHeight - .5) * 8;
+  document.querySelectorAll('.hstat').forEach((h, i) => {
+    const d = i % 2 === 0 ? 1 : -1;
+    h.style.transform = `translate(${mx * d}px, ${my * d}px)`;
+  });
+});
+</script>
 </body>
 </html>

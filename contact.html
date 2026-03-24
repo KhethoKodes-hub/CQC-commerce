@@ -1,854 +1,1141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CQC Business Solutions - Contact Us</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        /* Custom gradient backgrounds */
-        .bg-gradient-primary {
-            background: linear-gradient(135deg, #ffffff 0%, #e6f0ff 50%, #1e3a8a 100%);
-        }
-        
-        .bg-gradient-card {
-            background: linear-gradient(145deg, #ffffff, #f0f7ff);
-        }
-        
-        .text-gradient {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Floating animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        /* Hover underline animation */
-        .hover-underline {
-            position: relative;
-        }
-        
-        .hover-underline::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background: linear-gradient(90deg, #2563eb, #1e3a8a);
-            transition: width 0.3s ease;
-        }
-        
-        .hover-underline:hover::after {
-            width: 100%;
-        }
-        
-        /* Contact card hover */
-        .contact-card {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.2) 50%,
-                transparent 70%
-            );
-            transform: rotate(45deg);
-            transition: transform 0.6s ease;
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        .contact-card:hover::before {
-            transform: rotate(45deg) translate(50%, 50%);
-        }
-        
-        .contact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Map pin pulse */
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.3);
-                opacity: 0.7;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
-        .map-pin {
-            animation: pulse 2s infinite;
-        }
-        
-        /* Form input focus */
-        .form-input {
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .form-input:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-            outline: none;
-        }
-        
-        /* File upload */
-        .file-upload {
-            transition: all 0.3s ease;
-        }
-        
-        .file-upload:hover {
-            border-color: #2563eb;
-            background: #f0f7ff;
-        }
-        
-        /* Social icon hover */
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-5px);
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
-        }
-        
-        /* Geo pin popup */
-        .geo-popup {
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            transform: translateY(10px);
-        }
-        
-        .geo-pin:hover .geo-popup {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CQC Business Solutions | Contact Us</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════ ROOT ══════════════ */
+:root {
+  --org: #f97316;
+  --org-d: #ea580c;
+  --org-glow: rgba(249,115,22,.22);
+  --sky: #38bdf8;
+  --ink: #0b0805;
+  --ink-2: #1a1208;
+  --paper: #fdfaf6;
+  --warm: #fff7ee;
+  --mist: rgba(255,255,255,.08);
+  --border-w: rgba(255,255,255,.16);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;cursor:none;}
+
+/* ── cursor ── */
+#cur{
+  position:fixed;top:0;left:0;width:10px;height:10px;
+  background:var(--org);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .3s,height .3s,background .3s,opacity .2s;
+  mix-blend-mode:multiply;
+}
+#cur.big{width:48px;height:48px;background:rgba(249,115,22,.15);border:1.5px solid var(--org);}
+
+/* ── scrollbar ── */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--warm);}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--org),var(--sky));border-radius:6px;}
+
+/* ══════════════ TYPOGRAPHY ══════════════ */
+.serif{font-family:'Libre Baskerville',serif;}
+.grad{background:linear-gradient(120deg,var(--org) 10%,var(--sky) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.grad-warm{background:linear-gradient(120deg,#ea580c,#f97316,#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* ══════════════ HEADER ══════════════ */
+#hdr{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:0 40px;transition:background .45s,border .45s,box-shadow .45s;
+}
+#hdr.on{
+  background:rgba(253,250,246,.93);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border-bottom:1px solid rgba(249,115,22,.1);
+  box-shadow:0 2px 24px rgba(0,0,0,.06);
+}
+.hi{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:76px;}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer;}
+.lmark{
+  width:40px;height:40px;border-radius:10px;
+  background:linear-gradient(135deg,#f97316,#0ea5e9);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Outfit',sans-serif;font-weight:800;font-size:11px;color:white;
+  box-shadow:0 4px 14px rgba(249,115,22,.35);
+  transition:transform .35s;
+}
+.lmark:hover{transform:rotate(8deg) scale(1.1);}
+.lname{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:white;transition:color .35s;}
+.lsub{font-size:.66rem;color:rgba(255,255,255,.45);transition:color .35s;}
+#hdr.on .lname{color:var(--ink);}
+#hdr.on .lsub{color:#9ca3af;}
+nav{display:flex;gap:32px;}
+nav a{font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none;position:relative;transition:color .3s;}
+#hdr.on nav a{color:#6b7280;}
+nav a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1.5px;background:var(--org);transform:scaleX(0);transition:transform .3s;}
+nav a:hover,nav a.act{color:var(--org);}
+#hdr.on nav a:hover,#hdr.on nav a.act{color:var(--org);}
+nav a:hover::after,nav a.act::after{transform:scaleX(1);}
+.hact{display:flex;align-items:center;gap:12px;}
+.cpill{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+  border-radius:100px;padding:8px 16px;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:.74rem;font-weight:600;
+  color:rgba(255,255,255,.8);transition:all .3s;
+}
+#hdr.on .cpill{background:var(--warm);border-color:rgba(249,115,22,.15);color:#374151;}
+.cpill:hover{background:rgba(249,115,22,.14);border-color:rgba(249,115,22,.4);}
+.cdot{width:17px;height:17px;background:var(--org);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:700;color:white;}
+.bsign{
+  font-family:'Outfit',sans-serif;font-size:.76rem;font-weight:700;letter-spacing:.04em;
+  background:linear-gradient(135deg,#f97316,#ea580c);color:white;border:none;
+  border-radius:100px;padding:10px 22px;cursor:pointer;
+  box-shadow:0 4px 16px rgba(249,115,22,.35);transition:all .35s;
+}
+.bsign:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.45);}
+#mobBtn{background:none;border:none;cursor:pointer;color:white;padding:6px;display:none;}
+#hdr.on #mobBtn{color:#374151;}
+
+/* ══════════════ MOBILE MENU ══════════════ */
+.mob{display:none;position:fixed;inset:0;z-index:490;background:rgba(11,8,5,.97);backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;gap:34px;}
+.mob.open{display:flex;}
+.mob a{font-family:'Libre Baskerville',serif;font-size:2.8rem;color:rgba(255,255,255,.75);text-decoration:none;transition:color .3s;}
+.mob a:hover{color:var(--org);}
+.mclose{position:absolute;top:28px;right:28px;background:none;border:none;color:white;cursor:pointer;}
+
+/* ══════════════ SPLIT HERO ══════════════ */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;}
+@media(max-width:900px){.hero{grid-template-columns:1fr;}}
+
+/* Left dark panel with form */
+.hero-left{
+  background:var(--ink-2);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px 64px 80px;
+}
+.hl-grain{
+  position:absolute;inset:0;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;animation:grain 1.3s steps(2) infinite;pointer-events:none;
+}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-2px,1px)}50%{transform:translate(1px,-2px)}75%{transform:translate(-1px,2px)}100%{transform:translate(2px,-1px)}}
+.hl-orb{position:absolute;bottom:-150px;left:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(249,115,22,.16),transparent 70%);pointer-events:none;}
+.hl-orb2{position:absolute;top:-100px;right:-60px;width:350px;height:350px;background:radial-gradient(circle,rgba(56,189,248,.1),transparent 70%);pointer-events:none;}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.35);
+  border-radius:100px;padding:5px 16px;margin-bottom:24px;width:fit-content;
+  font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:#fb923c;
+  animation:fadeU .7s ease both;
+}
+@keyframes fadeU{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-left h1{font-family:'Libre Baskerville',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:700;color:white;line-height:1.1;letter-spacing:-.02em;margin-bottom:18px;animation:fadeU .7s .08s ease both;}
+.hero-left>p{font-size:.92rem;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:40px;animation:fadeU .7s .16s ease both;}
+
+/* ── FORM ── */
+.form-wrap{position:relative;z-index:2;animation:fadeU .7s .22s ease both;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:560px){.frow{grid-template-columns:1fr;}}
+.fg{margin-bottom:18px;}
+.fg label{display:block;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:8px;}
+.fi{
+  width:100%;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);border-radius:12px;
+  padding:13px 16px;font-family:'Outfit',sans-serif;font-size:.88rem;
+  color:white;outline:none;transition:all .35s;
+  -webkit-appearance:none;
+}
+.fi::placeholder{color:rgba(255,255,255,.28);}
+.fi:focus{border-color:rgba(249,115,22,.7);background:rgba(249,115,22,.06);box-shadow:0 0 0 3px rgba(249,115,22,.12);}
+select.fi option{background:#1a1208;color:white;}
+textarea.fi{resize:vertical;min-height:120px;}
+
+/* file drop */
+.fdrop{
+  border:1.5px dashed rgba(255,255,255,.18);border-radius:12px;
+  padding:28px;text-align:center;cursor:pointer;
+  transition:all .35s;margin-bottom:18px;
+}
+.fdrop:hover{border-color:rgba(249,115,22,.55);background:rgba(249,115,22,.05);}
+.fdrop-icon{width:40px;height:40px;margin:0 auto 10px;opacity:.4;}
+.fdrop p{font-size:.82rem;color:rgba(255,255,255,.45);}
+.fdrop span{font-size:.7rem;color:rgba(255,255,255,.25);}
+
+/* checkbox */
+.fcheck{display:flex;align-items:flex-start;gap:12px;margin-bottom:20px;}
+.fcheck input[type=checkbox]{width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--org);}
+.fcheck p{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.6;}
+.fcheck a{color:#fb923c;text-decoration:none;}
+.fcheck a:hover{text-decoration:underline;}
+
+/* recaptcha mock */
+.fcap{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:14px 16px;margin-bottom:20px;
+}
+.fcap input{accent-color:var(--org);}
+.fcap span{font-size:.82rem;color:rgba(255,255,255,.4);flex:1;}
+.fcap-logo{font-size:.62rem;color:rgba(255,255,255,.2);text-align:right;}
+
+/* submit */
+.bsubmit{
+  width:100%;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  background:linear-gradient(135deg,#f97316,#ea580c);color:white;border:none;
+  border-radius:12px;padding:16px;cursor:pointer;
+  box-shadow:0 6px 24px rgba(249,115,22,.4);
+  transition:all .38s;display:flex;align-items:center;justify-content:center;gap:10px;
+  position:relative;overflow:hidden;
+}
+.bsubmit::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#fb923c,#f97316);opacity:0;transition:opacity .3s;}
+.bsubmit:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(249,115,22,.5);}
+.bsubmit:hover::before{opacity:1;}
+.bsubmit span,.bsubmit svg{position:relative;z-index:1;}
+
+/* ── Right photo panel ── */
+.hero-right{position:relative;overflow:hidden;}
+.hr-bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1000&q=85&auto=format&fit=crop');
+  background-size:cover;background-position:center;
+  transition:transform 9s ease;
+}
+.hr-bg.rdy{transform:scale(1.02);}
+.hr-fog{position:absolute;inset:0;background:linear-gradient(200deg,rgba(11,8,5,.25) 0%,rgba(249,115,22,.22) 60%,rgba(5,18,32,.55) 100%);}
+.hr-content{position:relative;z-index:2;padding:40px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;}
+.hr-chips{display:flex;flex-direction:column;gap:14px;max-width:280px;margin-left:auto;}
+.hchip{
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:16px;padding:16px 20px;
+  animation:floatC 5s ease-in-out infinite;
+}
+.hchip:nth-child(2){animation-delay:-2s;}
+.hchip:nth-child(3){animation-delay:-4s;}
+@keyframes floatC{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hchip-val{font-family:'Libre Baskerville',serif;font-size:1.8rem;color:white;line-height:1;}
+.hchip-lbl{font-size:.66rem;color:rgba(255,255,255,.55);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
+
+/* ══════════════ QUICK CONTACT STRIP ══════════════ */
+.qstrip{background:white;border-bottom:1px solid rgba(249,115,22,.08);}
+.qstrip-inner{max-width:1300px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+@media(max-width:700px){.qstrip-inner{grid-template-columns:1fr;}}
+.qcard{
+  display:flex;align-items:center;gap:18px;padding:32px 28px;
+  transition:background .35s;cursor:pointer;position:relative;overflow:hidden;
+}
+.qcard::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(249,115,22,.04),rgba(56,189,248,.03));opacity:0;transition:opacity .35s;}
+.qcard:hover::before{opacity:1;}
+.qcard:hover .qicon{transform:scale(1.1) rotate(-6deg);}
+.qdivider{width:1px;background:linear-gradient(180deg,transparent,rgba(249,115,22,.15),transparent);align-self:stretch;}
+.qicon{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .4s;position:relative;z-index:1;}
+.qinfo{position:relative;z-index:1;}
+.qinfo-label{font-family:'Outfit',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:5px;}
+.qinfo-val{font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;color:var(--ink);line-height:1.2;}
+.qinfo-sub{font-size:.74rem;color:#9ca3af;margin-top:4px;}
+
+/* ══════════════ SECTION COMMON ══════════════ */
+.sec{padding:104px 40px;}
+.cnt{max-width:1300px;margin:0 auto;}
+.slbl{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(249,115,22,.22);
+  background:linear-gradient(135deg,rgba(249,115,22,.06),rgba(56,189,248,.04));
+  border-radius:100px;padding:5px 16px;margin-bottom:20px;
+  font-family:'Outfit',sans-serif;font-size:.67rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--org);
+}
+.slbl::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--org);}
+.stitle{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:700;line-height:1.12;letter-spacing:-.02em;color:var(--ink);}
+
+/* ══════════════ OFFICE HOURS + MAP SECTION ══════════════ */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
+@media(max-width:900px){.info-grid{grid-template-columns:1fr;}}
+
+/* hours card */
+.hours-card{
+  background:white;border-radius:28px;
+  border:1px solid rgba(249,115,22,.08);
+  box-shadow:0 4px 30px rgba(0,0,0,.05);
+  overflow:hidden;
+}
+.hcard-head{
+  padding:36px 40px 0;
+  background:linear-gradient(160deg,white,var(--warm));
+}
+.hcard-head h3{font-family:'Libre Baskerville',serif;font-size:1.6rem;margin-bottom:6px;}
+.hcard-head p{font-size:.85rem;color:#6b7280;margin-bottom:32px;}
+.hours-list{list-style:none;}
+.hours-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 40px;border-bottom:1px solid #f9f5f0;
+  transition:background .3s;
+}
+.hours-row:last-child{border-bottom:none;}
+.hours-row:hover{background:rgba(249,115,22,.03);}
+.hday{font-size:.88rem;color:#4b5563;}
+.htime{font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;color:var(--ink);}
+.htime.closed{color:#ef4444;}
+.hemergency{
+  margin:20px 40px 32px;
+  background:linear-gradient(135deg,rgba(249,115,22,.07),rgba(56,189,248,.05));
+  border:1px solid rgba(249,115,22,.18);border-radius:16px;
+  padding:16px 20px;display:flex;align-items:center;gap:14px;
+}
+.hemerg-icon{width:36px;height:36px;border-radius:10px;background:rgba(249,115,22,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hemergency p{font-size:.8rem;color:#374151;line-height:1.6;}
+.hemergency strong{color:var(--org);}
+
+/* SA map card */
+.map-card{
+  background:var(--ink-2);border-radius:28px;overflow:hidden;
+  box-shadow:0 4px 30px rgba(0,0,0,.12);
+  position:relative;
+}
+.map-card-head{padding:36px 40px 28px;}
+.map-card-head h3{font-family:'Libre Baskerville',serif;font-size:1.6rem;color:white;margin-bottom:6px;}
+.map-card-head p{font-size:.85rem;color:rgba(255,255,255,.45);}
+.map-wrap{position:relative;padding:0 24px 24px;}
+
+/* SVG Map styles */
+.sa-map{width:100%;height:auto;}
+.province{
+  fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.15);stroke-width:1;
+  transition:fill .35s,stroke .35s;cursor:pointer;
+}
+.province:hover,.province.active{
+  fill:rgba(249,115,22,.25);stroke:rgba(249,115,22,.6);
+}
+.province.partner{fill:rgba(56,189,248,.12);stroke:rgba(56,189,248,.4);}
+.province.partner:hover{fill:rgba(56,189,248,.28);stroke:rgba(56,189,248,.7);}
+.province.head{fill:rgba(249,115,22,.2);stroke:rgba(249,115,22,.6);}
+.province.head:hover{fill:rgba(249,115,22,.35);stroke:var(--org);}
+
+/* map tooltip */
+.map-tip{
+  position:absolute;background:white;border-radius:12px;
+  padding:12px 16px;box-shadow:0 8px 30px rgba(0,0,0,.2);
+  pointer-events:none;opacity:0;transition:opacity .25s;
+  z-index:10;min-width:150px;
+}
+.map-tip.show{opacity:1;}
+.map-tip h5{font-family:'Libre Baskerville',serif;font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.map-tip p{font-size:.74rem;color:#6b7280;}
+.map-tip span{font-size:.72rem;font-weight:700;color:var(--org);}
+
+/* map legend */
+.map-legend{display:flex;gap:20px;padding:0 24px 24px;flex-wrap:wrap;}
+.mleg{display:flex;align-items:center;gap:7px;font-size:.72rem;color:rgba(255,255,255,.45);font-family:'Outfit',sans-serif;font-weight:500;}
+.mleg-dot{width:10px;height:10px;border-radius:50%;}
+
+/* ══════════════ NATIONAL FOOTPRINT ══════════════ */
+.foot-section{background:linear-gradient(160deg,var(--warm) 0%,white 40%,var(--paper) 100%);}
+.prov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
+@media(max-width:900px){.prov-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:560px){.prov-grid{grid-template-columns:repeat(2,1fr);}}
+
+.pcard{
+  border-radius:22px;padding:28px 20px;text-align:center;
+  background:white;border:1px solid rgba(249,115,22,.07);
+  box-shadow:0 2px 16px rgba(0,0,0,.04);
+  transition:all .42s cubic-bezier(.4,0,.2,1);cursor:default;
+  position:relative;overflow:hidden;
+}
+.pcard::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(249,115,22,.05),rgba(56,189,248,.04));opacity:0;transition:opacity .4s;}
+.pcard:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(249,115,22,.1);border-color:rgba(249,115,22,.2);}
+.pcard:hover::after{opacity:1;}
+.pcard:hover .picon{transform:scale(1.12) rotate(6deg);}
+.picon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;transition:transform .4s;position:relative;z-index:1;}
+.pcard h4{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;margin-bottom:5px;position:relative;z-index:1;}
+.pcard .ptag{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;margin-bottom:10px;position:relative;z-index:1;}
+.pcard .pnum{font-size:.78rem;font-weight:700;position:relative;z-index:1;}
+
+/* ══════════════ EMERGENCY CTA ══════════════ */
+.emer-section{position:relative;overflow:hidden;}
+.emer-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=1600&q=70&auto=format&fit=crop');background-size:cover;background-position:center;}
+.emer-fog{position:absolute;inset:0;background:linear-gradient(135deg,rgba(234,88,12,.9) 0%,rgba(11,8,5,.75) 60%,rgba(14,165,233,.7) 100%);}
+.emer-inner{position:relative;z-index:2;padding:100px 40px;text-align:center;}
+.emer-inner h2{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,4vw,3.4rem);color:white;margin-bottom:16px;line-height:1.1;}
+.emer-inner p{color:rgba(255,255,255,.65);font-size:1rem;max-width:480px;margin:0 auto 44px;line-height:1.8;}
+.emer-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.bemer{
+  font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;
+  border-radius:100px;padding:15px 32px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:10px;
+  text-decoration:none;transition:all .35s;
+}
+.bemer-white{background:white;color:var(--org-d);border:none;box-shadow:0 4px 20px rgba(0,0,0,.2);}
+.bemer-white:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.3);}
+.bemer-green{background:#16a34a;color:white;border:none;box-shadow:0 4px 20px rgba(22,163,74,.35);}
+.bemer-green:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(22,163,74,.5);}
+
+/* ══════════════ FAQ ══════════════ */
+.faq-section{background:white;}
+.faq-wrap{max-width:780px;margin:0 auto;}
+.fitem{
+  border-radius:16px;margin-bottom:12px;overflow:hidden;
+  border:1px solid rgba(249,115,22,.08);
+  transition:border-color .35s,box-shadow .35s;
+}
+.fitem.open{border-color:rgba(249,115,22,.25);box-shadow:0 4px 24px rgba(249,115,22,.08);}
+.fitem-btn{
+  width:100%;background:white;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 28px;
+  font-family:'Outfit',sans-serif;font-size:.92rem;font-weight:600;color:var(--ink);
+  text-align:left;transition:background .3s;gap:16px;
+}
+.fitem-btn:hover{background:rgba(249,115,22,.03);}
+.fitem.open .fitem-btn{background:rgba(249,115,22,.04);}
+.farrow{
+  width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(249,115,22,.25);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:all .35s;
+}
+.fitem.open .farrow{background:var(--org);border-color:var(--org);transform:rotate(180deg);}
+.farrow svg{width:14px;height:14px;stroke:var(--org);transition:stroke .35s;}
+.fitem.open .farrow svg{stroke:white;}
+.fitem-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s cubic-bezier(.4,0,.2,1),padding .4s;
+  padding:0 28px;
+}
+.fitem.open .fitem-body{max-height:200px;padding:0 28px 22px;}
+.fitem-body p{font-size:.88rem;color:#6b7280;line-height:1.8;}
+
+/* ══════════════ BOTTOM CTA ══════════════ */
+.bcta-section{background:var(--paper);}
+.bcta-card{
+  background:linear-gradient(135deg,rgba(249,115,22,.07),rgba(56,189,248,.05));
+  border:1px solid rgba(249,115,22,.15);border-radius:28px;
+  padding:64px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.bcta-card::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(249,115,22,.12),transparent 70%);pointer-events:none;}
+.bcta-card h2{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:14px;position:relative;z-index:1;}
+.bcta-card p{color:#6b7280;font-size:.92rem;max-width:440px;margin:0 auto 40px;line-height:1.8;position:relative;z-index:1;}
+.bcta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.bpri{
+  font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  background:linear-gradient(135deg,#f97316,#ea580c);color:white;border:none;
+  border-radius:100px;padding:14px 30px;cursor:pointer;
+  box-shadow:0 6px 22px rgba(249,115,22,.4);transition:all .35s;
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+}
+.bpri:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(249,115,22,.5);}
+.bout{
+  font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  background:transparent;color:var(--org);
+  border:1.5px solid rgba(249,115,22,.4);border-radius:100px;padding:13px 30px;cursor:pointer;
+  transition:all .35s;display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+}
+.bout:hover{background:var(--org);color:white;border-color:var(--org);transform:translateY(-3px);}
+.bcta-meta{margin-top:28px;font-size:.76rem;color:#9ca3af;}
+
+/* ══════════════ FOOTER ══════════════ */
+footer{background:#060504;color:white;padding:80px 40px 40px;}
+.fgrid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:56px;margin-bottom:56px;}
+@media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr;gap:40px;}}
+@media(max-width:500px){.fgrid{grid-template-columns:1fr;}}
+.fbrand p{color:rgba(255,255,255,.35);font-size:.84rem;line-height:1.75;margin-top:16px;max-width:280px;}
+.fbadges{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
+.fbadge{display:inline-flex;align-items:center;gap:6px;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.22);border-radius:100px;padding:4px 13px;font-family:'Outfit',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.07em;color:#fb923c;}
+.fcol h5{font-family:'Outfit',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:18px;}
+.fcol ul{list-style:none;}
+.fcol ul li{margin-bottom:11px;}
+.fcol ul li a{color:rgba(255,255,255,.48);font-size:.84rem;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:color .3s,gap .3s;}
+.fcol ul li a::before{content:'';width:0;height:1px;background:var(--org);transition:width .3s;}
+.fcol ul li a:hover{color:white;gap:11px;}
+.fcol ul li a:hover::before{width:10px;}
+.fcontact-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:13px;}
+.fcontact-row svg{flex-shrink:0;margin-top:2px;}
+.fcontact-row span{color:rgba(255,255,255,.42);font-size:.83rem;line-height:1.6;}
+.fbot{max-width:1300px;margin:0 auto;border-top:1px solid rgba(255,255,255,.05);padding-top:30px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.fbot p{color:rgba(255,255,255,.22);font-size:.76rem;}
+
+/* ══════════════ REVEAL ══════════════ */
+.rv{opacity:0;}
+@keyframes rvU{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes rvL{from{opacity:0;transform:translateX(-32px)}to{opacity:1;transform:translateX(0)}}
+@keyframes rvR{from{opacity:0;transform:translateX(32px)}to{opacity:1;transform:translateX(0)}}
+.rv.up{animation:rvU .7s cubic-bezier(.4,0,.2,1) forwards;}
+.rv.left{animation:rvL .7s cubic-bezier(.4,0,.2,1) forwards;}
+.rv.right{animation:rvR .7s cubic-bezier(.4,0,.2,1) forwards;}
+
+/* ══════════════ RESPONSIVE ══════════════ */
+@media(max-width:768px){
+  .sec{padding:72px 20px;}
+  #hdr{padding:0 20px;}
+  footer{padding:60px 20px 36px;}
+  .hero-left{padding:100px 28px 60px;}
+  .qstrip-inner{padding:0 20px;}
+  .bcta-card{padding:40px 28px;}
+  nav{display:none;}
+  .bsign{display:none;}
+}
+</style>
 </head>
-<body class="bg-gradient-primary min-h-screen">
+<body>
 
-    <!-- Navigation (same as homepage) -->
-    <nav class="bg-white/80 backdrop-blur-md fixed w-full z-50 shadow-sm">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-xl">CQC</span>
-                    </div>
-                    <span class="font-bold text-xl text-gray-800">Business Solutions</span>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">Home</a>
-                    <a href="about.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">About Us</a>
-                    <a href="services.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">Services</a>
-                    <a href="gallery.html" class="hover-underline text-gray-700 hover:text-blue-600 transition">Gallery</a>
-                    <a href="contact.html" class="hover-underline text-blue-600 font-semibold">Contact</a>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <button class="relative">
-                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                        </svg>
-                        <span class="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
-                    </button>
-                    <button class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-2 rounded-lg hover:shadow-lg transition transform hover:scale-105">
-                        Sign In
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+<!-- CURSOR -->
+<div id="cur"></div>
 
-    <!-- Page Header -->
-    <section class="pt-32 pb-16 px-6">
-        <div class="container mx-auto text-center">
-            <div class="inline-block px-4 py-2 bg-blue-100 rounded-full mb-6">
-                <span class="text-blue-800 font-semibold text-sm">📞 GET IN TOUCH</span>
-            </div>
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">
-                Contact <span class="text-gradient">Us</span>
-            </h1>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                Have a question? Need a quote? Want to refurbish your office furniture? We're here to help.
-            </p>
-        </div>
-    </section>
+<!-- MOBILE MENU -->
+<div class="mob" id="mobM">
+  <button class="mclose" onclick="closeMob()">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="index.html">Home</a>
+  <a href="catalogue.html">Catalogue</a>
+  <a href="services.html">Services</a>
+  <a href="contact.html" style="color:var(--org)">Contact</a>
+</div>
 
-    <!-- Quick Contact Cards -->
-    <section class="px-6 -mt-8">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Phone Card -->
-                <div class="contact-card bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl flex items-center space-x-4">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center text-white text-2xl">
-                        📞
-                    </div>
-                    <div>
-                        <h3 class="text-sm text-gray-500 mb-1">Call Us</h3>
-                        <p class="text-xl font-bold">(011) 473-1467</p>
-                        <p class="text-sm text-gray-500">Mon-Fri, 8am-5pm</p>
-                    </div>
-                </div>
-                
-                <!-- Email Card -->
-                <div class="contact-card bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl flex items-center space-x-4">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center text-white text-2xl">
-                        ✉️
-                    </div>
-                    <div>
-                        <h3 class="text-sm text-gray-500 mb-1">Email Us</h3>
-                        <p class="text-xl font-bold break-all">qfaltain@cqcbusinessolutions.co.za</p>
-                        <p class="text-sm text-gray-500">24hr response</p>
-                    </div>
-                </div>
-                
-                <!-- WhatsApp Card -->
-                <div class="contact-card bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl flex items-center space-x-4">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center text-white text-2xl">
-                        💬
-                    </div>
-                    <div>
-                        <h3 class="text-sm text-gray-500 mb-1">WhatsApp</h3>
-                        <p class="text-xl font-bold">082 567 5710</p>
-                        <p class="text-sm text-gray-500">Quick responses</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Contact Section: Form + Map -->
-    <section class="py-16 px-6">
-        <div class="container mx-auto">
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Contact Form -->
-                <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-10">
-                    <h2 class="text-3xl font-bold mb-2">Send Us a <span class="text-gradient">Message</span></h2>
-                    <p class="text-gray-600 mb-8">Fill out the form below and we'll get back to you within 24 hours.</p>
-                    
-                    <form class="space-y-6">
-                        <!-- Name Row -->
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-gray-700 font-semibold mb-2">Your Name *</label>
-                                <input type="text" placeholder="John Smith" class="form-input w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-semibold mb-2">Your Email *</label>
-                                <input type="email" placeholder="john@company.co.za" class="form-input w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-                            </div>
-                        </div>
-                        
-                        <!-- Phone -->
-                        <div>
-                            <label class="block text-gray-700 font-semibold mb-2">Phone Number</label>
-                            <input type="tel" placeholder="+27 82 123 4567" class="form-input w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-                        </div>
-                        
-                        <!-- Subject -->
-                        <div>
-                            <label class="block text-gray-700 font-semibold mb-2">Subject *</label>
-                            <select class="form-input w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-                                <option>Select a subject</option>
-                                <option>Refurbishment Request</option>
-                                <option>Installation Quote</option>
-                                <option>Rental Inquiry</option>
-                                <option>Component Purchase</option>
-                                <option>General Question</option>
-                                <option>Partnership Opportunity</option>
-                            </select>
-                        </div>
-                        
-                        <!-- Message -->
-                        <div>
-                            <label class="block text-gray-700 font-semibold mb-2">Message *</label>
-                            <textarea rows="5" placeholder="Please describe what you need help with..." class="form-input w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
-                        </div>
-                        
-                        <!-- File Upload -->
-                        <div>
-                            <label class="block text-gray-700 font-semibold mb-2">Upload Image (for refurbishment requests)</label>
-                            <div class="file-upload border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-600 hover:bg-blue-50 transition cursor-pointer">
-                                <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <p class="text-gray-600 font-semibold">Click to upload or drag and drop</p>
-                                <p class="text-sm text-gray-500 mt-2">PNG, JPG, JPEG up to 20MB</p>
-                            </div>
-                            <p class="text-sm text-gray-500 mt-2">No file chosen</p>
-                        </div>
-                        
-                        <!-- Privacy Policy Checkbox -->
-                        <div class="flex items-start space-x-3">
-                            <input type="checkbox" id="privacy" class="w-5 h-5 mt-1 text-blue-600 rounded focus:ring-blue-600">
-                            <label for="privacy" class="text-gray-600 text-sm">
-                                I agree to the <a href="#" class="text-blue-600 font-semibold hover:underline">Information Protection Policy</a> and consent to CQC Business Solutions processing my data to respond to my inquiry.
-                            </label>
-                        </div>
-                        
-                        <!-- reCAPTCHA -->
-                        <div class="bg-gray-50 p-4 rounded-xl flex items-center space-x-4">
-                            <input type="checkbox" class="w-5 h-5">
-                            <span class="text-gray-700">I am not a robot</span>
-                            <img src="https://via.placeholder.com/60x30/aaaaaa/ffffff?text=reCAPTCHA" alt="reCAPTCHA" class="ml-auto">
-                        </div>
-                        
-                        <!-- Submit Button -->
-                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition transform hover:scale-105">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-                
-                <!-- Map & Contact Info -->
-                <div class="space-y-8">
-                    <!-- Google Map Simulation -->
-                    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
-                        <div class="relative h-96 bg-gray-200">
-                            <!-- Map Background -->
-                            <img src="https://via.placeholder.com/800x400/1e3a8a/ffffff?text=Google+Map+-+Gauteng,+South+Africa" alt="Map" class="w-full h-full object-cover">
-                            
-                            <!-- Animated Pins -->
-                            <div class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                <div class="relative geo-pin cursor-pointer">
-                                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center map-pin shadow-lg">
-                                        <div class="w-3 h-3 bg-white rounded-full"></div>
-                                    </div>
-                                    <!-- Popup -->
-                                    <div class="geo-popup absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white p-3 rounded-lg shadow-xl whitespace-nowrap z-10">
-                                        <p class="font-bold text-gray-800">Head Office</p>
-                                        <p class="text-sm text-gray-600">Gauteng</p>
-                                        <p class="text-xs text-blue-600">(011) 473-1467</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- KZN Pin -->
-                            <div class="absolute top-1/2 left-2/3">
-                                <div class="relative geo-pin cursor-pointer">
-                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center map-pin">
-                                        <div class="w-2 h-2 bg-white rounded-full"></div>
-                                    </div>
-                                    <div class="geo-popup absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-xl whitespace-nowrap text-sm">
-                                        <p class="font-semibold">KZN Partner</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Western Cape Pin -->
-                            <div class="absolute top-2/3 left-1/4">
-                                <div class="relative geo-pin cursor-pointer">
-                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center map-pin">
-                                        <div class="w-2 h-2 bg-white rounded-full"></div>
-                                    </div>
-                                    <div class="geo-popup absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-xl whitespace-nowrap text-sm">
-                                        <p class="font-semibold">Western Cape Partner</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Eastern Cape Pin -->
-                            <div class="absolute top-3/4 left-1/2">
-                                <div class="relative geo-pin cursor-pointer">
-                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center map-pin">
-                                        <div class="w-2 h-2 bg-white rounded-full"></div>
-                                    </div>
-                                    <div class="geo-popup absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-xl whitespace-nowrap text-sm">
-                                        <p class="font-semibold">Eastern Cape Partner</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Free State Pin -->
-                            <div class="absolute top-1/2 left-1/3">
-                                <div class="relative geo-pin cursor-pointer">
-                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center map-pin">
-                                        <div class="w-2 h-2 bg-white rounded-full"></div>
-                                    </div>
-                                    <div class="geo-popup absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white p-2 rounded-lg shadow-xl whitespace-nowrap text-sm">
-                                        <p class="font-semibold">Free State Partner</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Map Controls -->
-                            <div class="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-2">
-                                <button class="w-8 h-8 hover:bg-gray-100 rounded flex items-center justify-center">+</button>
-                                <button class="w-8 h-8 hover:bg-gray-100 rounded flex items-center justify-center">−</button>
-                            </div>
-                            
-                            <!-- Map Type -->
-                            <div class="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg px-3 py-1 text-sm">
-                                🌍 Satellite
-                            </div>
-                        </div>
-                        
-                        <div class="p-6 border-t border-gray-200">
-                            <p class="text-center text-gray-600">
-                                <span class="font-semibold">📍 Head Office:</span> Gauteng | 
-                                <span class="font-semibold">National Partners:</span> KZN, Western Cape, Free State, Eastern Cape
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!-- Office Hours Card -->
-                    <div class="bg-white rounded-3xl shadow-2xl p-8">
-                        <h3 class="text-2xl font-bold mb-6">Office <span class="text-gradient">Hours</span></h3>
-                        
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
-                                <span class="text-gray-600">Monday - Friday</span>
-                                <span class="font-semibold">8:00 AM - 5:00 PM</span>
-                            </div>
-                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
-                                <span class="text-gray-600">Saturday</span>
-                                <span class="font-semibold">9:00 AM - 1:00 PM</span>
-                            </div>
-                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
-                                <span class="text-gray-600">Sunday</span>
-                                <span class="font-semibold text-red-500">Closed</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600">Public Holidays</span>
-                                <span class="font-semibold text-red-500">Closed</span>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6 bg-blue-50 p-4 rounded-xl">
-                            <p class="text-sm text-blue-800 flex items-center">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                Emergency refurbishment? Call our 24/7 support line: 082 567 5710
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!-- Emergency Contact Card -->
-                    <div class="bg-gradient-to-r from-red-600 to-red-700 rounded-3xl shadow-2xl p-8 text-white">
-                        <h3 class="text-2xl font-bold mb-4">Urgent Refurbishment?</h3>
-                        <p class="text-red-100 mb-6">We offer emergency repair services for business continuity. Same-day service available if spares are on hand.</p>
-                        
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-white/20 rounded-full p-4">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="text-sm text-red-200">Call now</p>
-                                <p class="text-2xl font-bold">082 567 5710</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- National Footprint Section -->
-    <section class="py-16 px-6 bg-gradient-to-r from-blue-50 to-white">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-blue-600 font-semibold uppercase tracking-wider">Nationwide Coverage</span>
-                <h2 class="text-4xl font-bold mt-2 mb-4">Our <span class="text-gradient">National Footprint</span></h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Strategic partners across South Africa to serve you locally</p>
-            </div>
-            
-            <div class="grid md:grid-cols-5 gap-6">
-                <!-- Gauteng -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl">
-                        🏢
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Gauteng</h3>
-                    <p class="text-gray-600 text-sm mb-3">Head Office</p>
-                    <p class="text-blue-600 font-semibold">(011) 473-1467</p>
-                    <p class="text-xs text-gray-500 mt-2">qfaltain@cqcbusinessolutions.co.za</p>
-                </div>
-                
-                <!-- KZN -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl">
-                        🌊
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">KZN</h3>
-                    <p class="text-gray-600 text-sm mb-3">Strategic Partner</p>
-                    <p class="text-blue-600 font-semibold">(031) 123 4567</p>
-                    <p class="text-xs text-gray-500 mt-2">kzn@cqcbusinessolutions.co.za</p>
-                </div>
-                
-                <!-- Western Cape -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl">
-                        ⛰️
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Western Cape</h3>
-                    <p class="text-gray-600 text-sm mb-3">Strategic Partner</p>
-                    <p class="text-blue-600 font-semibold">(021) 123 4567</p>
-                    <p class="text-xs text-gray-500 mt-2">wc@cqcbusinessolutions.co.za</p>
-                </div>
-                
-                <!-- Eastern Cape -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl">
-                        🌅
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Eastern Cape</h3>
-                    <p class="text-gray-600 text-sm mb-3">Strategic Partner</p>
-                    <p class="text-blue-600 font-semibold">(041) 123 4567</p>
-                    <p class="text-xs text-gray-500 mt-2">ec@cqcbusinessolutions.co.za</p>
-                </div>
-                
-                <!-- Free State -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl">
-                        🌾
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Free State</h3>
-                    <p class="text-gray-600 text-sm mb-3">Strategic Partner</p>
-                    <p class="text-blue-600 font-semibold">(051) 123 4567</p>
-                    <p class="text-xs text-gray-500 mt-2">fs@cqcbusinessolutions.co.za</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- B-BBEE & Compliance Section -->
-    <section class="py-16 px-6">
-        <div class="container mx-auto">
-            <div class="bg-gradient-to-r from-blue-900 to-blue-800 rounded-3xl p-8 md:p-12 text-white">
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <h3 class="text-3xl font-bold mb-4">B-BBEE Level 1 Contributor</h3>
-                        <p class="text-blue-200 mb-6">We're proud to be a Level 1 B-BBEE contributor with 135% procurement recognition.</p>
-                        
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span>100% Black Ownership</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span>31% Black Women Ownership</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span>135% Procurement Recognition</span>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8 flex space-x-4">
-                            <a href="#" class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:shadow-xl transition transform hover:scale-105">
-                                Download Certificate
-                            </a>
-                            <a href="#" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition">
-                                View Compliance
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center">
-                            <div class="text-4xl font-bold mb-2">Level 1</div>
-                            <div class="text-sm text-blue-200">B-BBEE</div>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center">
-                            <div class="text-4xl font-bold mb-2">135%</div>
-                            <div class="text-sm text-blue-200">Procurement</div>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center">
-                            <div class="text-4xl font-bold mb-2">100%</div>
-                            <div class="text-sm text-blue-200">Black Owned</div>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center">
-                            <div class="text-4xl font-bold mb-2">31%</div>
-                            <div class="text-sm text-blue-200">Black Women</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-16 px-6 bg-gradient-to-r from-blue-50 to-white">
-        <div class="container mx-auto max-w-3xl">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4">Frequently Asked <span class="text-gradient">Questions</span></h2>
-                <p class="text-gray-600">Quick answers to common questions</p>
-            </div>
-            
-            <div class="space-y-4">
-                <!-- FAQ 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
-                        <span>How quickly do you respond to inquiries?</span>
-                        <svg class="w-5 h-5 text-blue-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div class="px-6 pb-6 text-gray-600">
-                        We respond to all inquiries within 24 hours during business days. For urgent refurbishment needs, call our emergency line at 082 567 5710.
-                    </div>
-                </div>
-                
-                <!-- FAQ 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
-                        <span>Do you service areas outside Gauteng?</span>
-                        <svg class="w-5 h-5 text-blue-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div class="px-6 pb-6 text-gray-600 hidden">
-                        Yes! We have strategic partners in KZN, Western Cape, Free State, and Eastern Cape. We can service clients nationwide.
-                    </div>
-                </div>
-                
-                <!-- FAQ 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
-                        <span>Can I get a quote before sending my chairs for refurbishment?</span>
-                        <svg class="w-5 h-5 text-blue-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div class="px-6 pb-6 text-gray-600 hidden">
-                        Absolutely! Use our contact form and upload photos of your chairs. We'll provide a detailed quote within 24 hours.
-                    </div>
-                </div>
-                
-                <!-- FAQ 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
-                        <span>Do you offer loan chairs during refurbishment?</span>
-                        <svg class="w-5 h-5 text-blue-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div class="px-6 pb-6 text-gray-600 hidden">
-                        Yes, we provide loan chairs whenever possible to ensure business continuity while your furniture is being refurbished.
-                    </div>
-                </div>
-                
-                <!-- FAQ 5 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-blue-50 transition">
-                        <span>What payment methods do you accept?</span>
-                        <svg class="w-5 h-5 text-blue-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div class="px-6 pb-6 text-gray-600 hidden">
-                        We accept EFT, credit cards, and corporate purchase orders for approved clients.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="py-16 px-6">
-        <div class="container mx-auto max-w-4xl">
-            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-12 text-center text-white relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mt-20 -mr-20"></div>
-                <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full -mb-20 -ml-20"></div>
-                
-                <h2 class="text-4xl font-bold mb-4 relative z-10">Prefer to Talk to Someone?</h2>
-                <p class="text-xl text-blue-100 mb-8 relative z-10">Our team is ready to assist you</p>
-                
-                <div class="flex flex-wrap justify-center gap-4 relative z-10">
-                    <a href="tel:0114731467" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition transform hover:scale-105 flex items-center space-x-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                        </svg>
-                        <span>Call (011) 473-1467</span>
-                    </a>
-                    <a href="#" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition transform hover:scale-105">
-                        Request Callback
-                    </a>
-                </div>
-                
-                <div class="mt-8 text-sm text-blue-200 relative z-10">
-                    <p>📧 qfaltain@cqcbusinessolutions.co.za | 📱 082 567 5710 (WhatsApp)</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer (same as homepage) -->
-    <footer class="bg-gray-900 text-white py-12 px-6">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-xl">CQC</span>
-                        </div>
-                        <span class="font-bold text-xl">Business Solutions</span>
-                    </div>
-                    <p class="text-gray-400">Level 1 B-BBEE Contributor with 135% Procurement Recognition. 100% Black Owned with 31% Black Women Ownership.</p>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Home</a></li>
-                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition">Services</a></li>
-                        <li><a href="#" class="hover:text-white transition">Gallery</a></li>
-                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Our Products</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Executive Chairs</a></li>
-                        <li><a href="#" class="hover:text-white transition">Industrial Seating</a></li>
-                        <li><a href="#" class="hover:text-white transition">Soft Seating</a></li>
-                        <li><a href="#" class="hover:text-white transition">Refurbished Furniture</a></li>
-                        <li><a href="#" class="hover:text-white transition">Chair Components</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Contact Info</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li class="flex items-center space-x-2">
-                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                            </svg>
-                            <span>(011) 473-1467</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                            <span>qfaltain@cqcbusinessolutions.co.za</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M12 18h.01M8 21h8a4 4 0 004-4V7a4 4 0 00-4-4H8a4 4 0 00-4 4v10a4 4 0 004 4z"></path>
-                            </svg>
-                            <span>082 567 5710</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                <p>© 2026 CQC Business Solutions (PTY) LTD. All rights reserved. NB Copyright protected.</p>
-                <p class="mt-2">Est. 2021 • Gauteng, South Africa • National Footprint: KZN, WP, Free State, Eastern Cape</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Action Button -->
-    <div class="fixed bottom-8 right-8">
-        <button class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition transform hover:scale-110 float-animation">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-            </svg>
-        </button>
+<!-- ═══════════ HEADER ═══════════ -->
+<header id="hdr">
+  <div class="hi">
+    <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <div>
+        <div class="lname" id="ln"></div>
+        <div class="lsub"  id="ls"></div>
+      </div>
     </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="catalogue.html">Catalogue</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html" class="act">Contact</a>
+    </nav>
+    <!--<div class="hact">
+      <div class="cpill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <div class="cdot">3</div>
+      </div>
+      <button class="bsign">Sign In</button>
+      <button id="mobBtn" onclick="openMob()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>-->
+    </div>
+  </div>
+</header>
 
-    <!-- Simple JavaScript -->
-    <script>
-        // FAQ accordion
-        document.querySelectorAll('.bg-white.rounded-xl button').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const content = this.nextElementSibling;
-                const arrow = this.querySelector('svg');
-                
-                if(content.style.display === 'none' || !content.style.display) {
-                    content.style.display = 'block';
-                    arrow.style.transform = 'rotate(180deg)';
-                } else {
-                    content.style.display = 'none';
-                    arrow.style.transform = 'rotate(0deg)';
-                }
-            });
-        });
-        
-        // File upload simulation
-        document.querySelector('.file-upload')?.addEventListener('click', function() {
-            alert('File upload dialog would open here. Max 20MB.');
-        });
-        
-        // Form submission simulation
-        document.querySelector('form')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! Our team will contact you within 24 hours. (Demo simulation)');
-        });
-        
-        // Geo pin click simulation
-        document.querySelectorAll('.geo-pin').forEach(pin => {
-            pin.addEventListener('click', function() {
-                const popup = this.querySelector('.geo-popup');
-                if(popup) {
-                    alert(popup.querySelector('.font-bold')?.textContent + ': ' + 
-                          (popup.querySelector('.text-xs')?.textContent || 'Contact office for details'));
-                }
-            });
-        });
-        
-        // Initially hide all FAQ answers
-        document.querySelectorAll('.bg-white.rounded-xl div.px-6').forEach(div => {
-            div.style.display = 'none';
-        });
-    </script>
+<!-- ═══════════ SPLIT HERO ═══════════ -->
+<section class="hero">
+  <!-- LEFT: Form -->
+  <div class="hero-left">
+    <div class="hl-grain"></div>
+    <div class="hl-orb"></div>
+    <div class="hl-orb2"></div>
+
+    <div class="hero-eyebrow" style="position:relative;z-index:2;">
+      <svg width="7" height="7" viewBox="0 0 7 7"><circle cx="3.5" cy="3.5" r="3.5" fill="#f97316"/></svg>
+      Get in Touch
+    </div>
+    <h1 class="serif" style="position:relative;z-index:2;">
+      Let's <em style="font-style:italic;">build</em><br>
+      something<br>
+      <span class="grad">together.</span>
+    </h1>
+    <p style="position:relative;z-index:2;">Send us a message and our team will respond within 24 hours. No wait times, no bots — just real people who care about your workspace.</p>
+
+    <div class="form-wrap">
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="frow">
+          <div class="fg">
+            <label>Your Name *</label>
+            <input type="text" class="fi" placeholder="John Smith" required>
+          </div>
+          <div class="fg">
+            <label>Email Address *</label>
+            <input type="email" class="fi" placeholder="john@company.co.za" required>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label>Phone Number</label>
+            <input type="tel" class="fi" placeholder="+27 82 123 4567">
+          </div>
+          <div class="fg">
+            <label>Subject *</label>
+            <select class="fi" required>
+              <option value="" disabled selected>Select a topic</option>
+              <option>Refurbishment Request</option>
+              <option>Installation Quote</option>
+              <option>Rental Inquiry</option>
+              <option>Component Purchase</option>
+              <option>Partnership Opportunity</option>
+              <option>General Question</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Message *</label>
+          <textarea class="fi" placeholder="Describe what you need help with..." required></textarea>
+        </div>
+
+        <!-- File drop -->
+        <div class="fdrop" id="fdrop" onclick="triggerFile()">
+          <svg class="fdrop-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <p>Click or drag to upload photos of your furniture</p>
+          <span>PNG, JPG up to 20MB</span>
+          <input type="file" id="fileInput" style="display:none;" accept=".png,.jpg,.jpeg" multiple onchange="showFiles(this)">
+        </div>
+        <div id="fileNames" style="font-size:.74rem;color:rgba(255,255,255,.35);margin-bottom:14px;display:none;"></div>
+
+        <div class="fcheck">
+          <input type="checkbox" id="priv" required>
+          <p>I agree to the <a href="#">Information Protection Policy</a> and consent to CQC Business Solutions processing my data to respond to my inquiry.</p>
+        </div>
+
+        <div class="fcap">
+          <input type="checkbox">
+          <span>I'm not a robot</span>
+          <div class="fcap-logo">reCAPTCHA<br>Privacy · Terms</div>
+        </div>
+
+        <button type="submit" class="bsubmit">
+          <span>Send Message</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </form>
+
+      <!-- Success state (hidden) -->
+      <div id="formSuccess" style="display:none;text-align:center;padding:40px 0;">
+        <div style="width:64px;height:64px;border-radius:50%;background:rgba(34,197,94,.15);border:2px solid rgba(34,197,94,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h4 class="serif" style="color:white;font-size:1.5rem;margin-bottom:10px;">Message Sent!</h4>
+        <p style="color:rgba(255,255,255,.5);font-size:.88rem;line-height:1.7;">We'll get back to you within 24 hours.<br>Check your inbox for a confirmation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Photo panel -->
+  <div class="hero-right">
+    <div class="hr-bg" id="hrBg"></div>
+    <div class="hr-fog"></div>
+    <div class="hr-content">
+      <div class="hr-chips">
+        <div class="hchip">
+          <div class="hchip-val grad">24hrs</div>
+          <div class="hchip-lbl">Response Time</div>
+        </div>
+        <div class="hchip">
+          <div class="hchip-val grad">082 567 5710</div>
+          <div class="hchip-lbl">WhatsApp Direct</div>
+        </div>
+        <div class="hchip">
+          <div class="hchip-val grad">5+</div>
+          <div class="hchip-lbl">Provinces Covered</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ QUICK CONTACT STRIP ═══════════ -->
+<div class="qstrip">
+  <div class="qstrip-inner">
+    <div class="qcard">
+      <div class="qicon" style="background:linear-gradient(135deg,#fff7ed,#fed7aa);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+      </div>
+      <div class="qinfo">
+        <div class="qinfo-label">Call Us</div>
+        <div class="qinfo-val">(011) 473-1467</div>
+        <div class="qinfo-sub">Mon–Fri, 8:00am – 5:00pm</div>
+      </div>
+    </div>
+    <div class="qdivider"></div>
+    <div class="qcard">
+      <div class="qicon" style="background:linear-gradient(135deg,#f0f9ff,#bae6fd);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+      </div>
+      <div class="qinfo">
+        <div class="qinfo-label">Email Us</div>
+        <div class="qinfo-val" style="font-size:.9rem;">qfaltain@cqcbusinessolutions.co.za</div>
+        <div class="qinfo-sub">24 hour response guaranteed</div>
+      </div>
+    </div>
+    <div class="qdivider"></div>
+    <div class="qcard">
+      <div class="qicon" style="background:linear-gradient(135deg,#f0fdf4,#bbf7d0);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+        </svg>
+      </div>
+      <div class="qinfo">
+        <div class="qinfo-label">WhatsApp</div>
+        <div class="qinfo-val">082 567 5710</div>
+        <div class="qinfo-sub">Fastest response channel</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ HOURS + MAP ═══════════ -->
+<section class="sec" style="background:var(--paper);">
+  <div class="cnt">
+    <div style="text-align:center;margin-bottom:56px;" class="rv up">
+      <div class="slbl">Find Us</div>
+      <h2 class="stitle">Hours &amp; <span class="grad">Locations</span></h2>
+    </div>
+    <div class="info-grid">
+      <!-- Office Hours -->
+      <div class="hours-card rv left">
+        <div class="hcard-head">
+          <h3 class="serif">Office <span class="grad">Hours</span></h3>
+          <p>When you can reach us — and when you really need us</p>
+        </div>
+        <ul class="hours-list">
+          <li class="hours-row">
+            <span class="hday">Monday – Friday</span>
+            <span class="htime">08:00 – 17:00</span>
+          </li>
+          <li class="hours-row">
+            <span class="hday">Saturday</span>
+            <span class="htime">09:00 – 13:00</span>
+          </li>
+          <li class="hours-row">
+            <span class="hday">Sunday</span>
+            <span class="htime closed">Closed</span>
+          </li>
+          <li class="hours-row">
+            <span class="hday">Public Holidays</span>
+            <span class="htime closed">Closed</span>
+          </li>
+        </ul>
+        <div class="hemergency">
+          <div class="hemerg-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p>Emergency refurbishment? Call our urgent line: <strong>082 567 5710</strong> — same-day service if spares are on hand.</p>
+        </div>
+      </div>
+
+      <!-- SA MAP -->
+      <div class="map-card rv right">
+        <div class="map-card-head">
+          <h3 class="serif">Our National <span class="grad">Presence</span></h3>
+          <p>Hover over provinces to see our coverage</p>
+        </div>
+        <div class="map-wrap">
+          <!-- Tooltip -->
+          <div class="map-tip" id="mapTip">
+            <h5 id="tipTitle">Province</h5>
+            <p id="tipRole"></p>
+            <span id="tipNum"></span>
+          </div>
+          <!-- Simplified SA Province SVG -->
+          <svg class="sa-map" viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Limpopo -->
+            <path class="province" id="limpopo" d="M160,20 L310,20 L330,60 L310,100 L250,110 L190,100 L160,70 Z"
+              data-name="Limpopo" data-role="Coverage via Partners" data-num="Contact Head Office"/>
+            <!-- Mpumalanga -->
+            <path class="province" id="mpuma" d="M310,60 L380,60 L390,110 L350,130 L310,120 L310,100 Z"
+              data-name="Mpumalanga" data-role="Coverage via Partners" data-num="Contact Head Office"/>
+            <!-- North West -->
+            <path class="province" id="nw" d="M80,60 L160,60 L190,100 L160,130 L100,130 L70,100 Z"
+              data-name="North West" data-role="Coverage via Partners" data-num="Contact Head Office"/>
+            <!-- Gauteng HEAD OFFICE -->
+            <path class="province head" id="gauteng" d="M190,100 L260,100 L270,140 L230,155 L190,140 Z"
+              data-name="Gauteng — Head Office" data-role="Head Office · All Services" data-num="(011) 473-1467"/>
+            <!-- KZN PARTNER -->
+            <path class="province partner" id="kzn" d="M310,120 L400,140 L420,200 L380,250 L310,240 L280,180 Z"
+              data-name="KwaZulu-Natal" data-role="Strategic Partner" data-num="(031) 123 4567"/>
+            <!-- Free State PARTNER -->
+            <path class="province partner" id="fs" d="M140,155 L270,150 L280,180 L260,230 L180,250 L120,220 L110,180 Z"
+              data-name="Free State" data-role="Strategic Partner" data-num="(051) 123 4567"/>
+            <!-- Northern Cape -->
+            <path class="province" id="nc" d="M40,120 L130,130 L120,220 L80,280 L20,240 L10,160 Z"
+              data-name="Northern Cape" data-role="Coverage via Partners" data-num="Contact Head Office"/>
+            <!-- Eastern Cape PARTNER -->
+            <path class="province partner" id="ec" d="M180,250 L310,250 L340,300 L300,360 L220,380 L160,330 L140,280 Z"
+              data-name="Eastern Cape" data-role="Strategic Partner" data-num="(041) 123 4567"/>
+            <!-- Western Cape PARTNER -->
+            <path class="province partner" id="wc" d="M40,260 L140,280 L160,330 L130,390 L60,400 L20,340 L20,260 Z"
+              data-name="Western Cape" data-role="Strategic Partner" data-num="(021) 123 4567"/>
+
+            <!-- Gauteng star marker -->
+            <circle cx="225" cy="127" r="6" fill="#f97316" opacity=".9">
+              <animate attributeName="r" values="6;9;6" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values=".9;.4;.9" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="225" cy="127" r="3" fill="white"/>
+          </svg>
+        </div>
+        <div class="map-legend">
+          <div class="mleg"><div class="mleg-dot" style="background:rgba(249,115,22,.7);"></div>Head Office — Gauteng</div>
+          <div class="mleg"><div class="mleg-dot" style="background:rgba(56,189,248,.6);"></div>Strategic Partners</div>
+          <div class="mleg"><div class="mleg-dot" style="background:rgba(255,255,255,.2);"></div>Coverage via Partners</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ NATIONAL FOOTPRINT ═══════════ -->
+<section class="sec foot-section">
+  <div class="cnt">
+    <div style="text-align:center;margin-bottom:52px;" class="rv up">
+      <div class="slbl">National Coverage</div>
+      <h2 class="stitle">Our <span class="grad">Footprint</span> Across SA</h2>
+      <p style="color:#6b7280;margin-top:14px;max-width:440px;margin:14px auto 0;font-size:.9rem;line-height:1.8;">Strategic partners across every major region — serving you locally, thinking nationally.</p>
+    </div>
+    <div class="prov-grid rv up">
+      <!-- Gauteng -->
+      <div class="pcard">
+        <div class="picon" style="background:linear-gradient(135deg,#fff7ed,#fed7aa);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+          </svg>
+        </div>
+        <h4 class="serif">Gauteng</h4>
+        <div class="ptag">Head Office</div>
+        <div class="pnum grad-warm">(011) 473-1467</div>
+      </div>
+      <!-- KZN -->
+      <div class="pcard">
+        <div class="picon" style="background:linear-gradient(135deg,#f0f9ff,#bae6fd);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h4 class="serif">KZN</h4>
+        <div class="ptag">Strategic Partner</div>
+        <div class="pnum" style="color:#38bdf8;">(031) 123 4567</div>
+      </div>
+      <!-- Western Cape -->
+      <div class="pcard">
+        <div class="picon" style="background:linear-gradient(135deg,#fff7ed,#fed7aa);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <h4 class="serif">Western Cape</h4>
+        <div class="ptag">Strategic Partner</div>
+        <div class="pnum grad-warm">(021) 123 4567</div>
+      </div>
+      <!-- Eastern Cape -->
+      <div class="pcard">
+        <div class="picon" style="background:linear-gradient(135deg,#f0f9ff,#bae6fd);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+          </svg>
+        </div>
+        <h4 class="serif">Eastern Cape</h4>
+        <div class="ptag">Strategic Partner</div>
+        <div class="pnum" style="color:#38bdf8;">(041) 123 4567</div>
+      </div>
+      <!-- Free State -->
+      <div class="pcard">
+        <div class="picon" style="background:linear-gradient(135deg,#fff7ed,#fed7aa);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07l-.71.71M6.34 17.66l-.71.71m12.02.71l-.71-.71M6.34 6.34l-.71-.71M12 6a6 6 0 100 12A6 6 0 0012 6z"/>
+          </svg>
+        </div>
+        <h4 class="serif">Free State</h4>
+        <div class="ptag">Strategic Partner</div>
+        <div class="pnum grad-warm">(051) 123 4567</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EMERGENCY CTA ═══════════ -->
+<section class="emer-section">
+  <div class="emer-bg"></div>
+  <div class="emer-fog"></div>
+  <div class="emer-inner rv up">
+    <div class="slbl" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.8);display:inline-flex;margin-bottom:24px;">Urgent?</div>
+    <h2 class="serif">Need <em>emergency</em><br>furniture service?</h2>
+    <p>We offer same-day urgent repair for business continuity — if spares are on hand, we can have your chairs back in action today.</p>
+    <div class="emer-btns">
+      <a href="tel:0825675710" class="bemer bemer-white">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        Call Now: 082 567 5710
+      </a>
+      <a href="https://wa.me/27825675710" class="bemer bemer-green">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="sec faq-section">
+  <div class="cnt">
+    <div style="text-align:center;margin-bottom:52px;" class="rv up">
+      <div class="slbl">FAQ</div>
+      <h2 class="stitle">Common <span class="grad">Questions</span></h2>
+    </div>
+    <div class="faq-wrap rv up">
+
+      <div class="fitem open">
+        <button class="fitem-btn" onclick="toggleFaq(this)">
+          How quickly do you respond to inquiries?
+          <div class="farrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="fitem-body"><p>We respond to all inquiries within 24 hours during business days. For urgent refurbishment needs, call our emergency line at 082 567 5710 — we aim for same-day acknowledgement on that line.</p></div>
+      </div>
+
+      <div class="fitem">
+        <button class="fitem-btn" onclick="toggleFaq(this)">
+          Do you service areas outside Gauteng?
+          <div class="farrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="fitem-body"><p>Yes! We have strategic partners in KwaZulu-Natal, Western Cape, Free State, and Eastern Cape. Whether you're in Durban, Cape Town, or Port Elizabeth, we can service you nationally.</p></div>
+      </div>
+
+      <div class="fitem">
+        <button class="fitem-btn" onclick="toggleFaq(this)">
+          Can I get a quote before sending my chairs for refurbishment?
+          <div class="farrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="fitem-body"><p>Absolutely. Use our contact form above, upload clear photos of your furniture, and describe the issues. We'll send a detailed, itemised quote within 24 hours — no obligation.</p></div>
+      </div>
+
+      <div class="fitem">
+        <button class="fitem-btn" onclick="toggleFaq(this)">
+          Do you provide loan chairs during refurbishment?
+          <div class="farrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="fitem-body"><p>Yes — wherever possible, we provide loan chairs to ensure your business operations continue uninterrupted while your furniture is being refurbished. Ask us about availability when booking.</p></div>
+      </div>
+
+      <div class="fitem">
+        <button class="fitem-btn" onclick="toggleFaq(this)">
+          What payment methods do you accept?
+          <div class="farrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="fitem-body"><p>We accept EFT, major credit cards, and corporate purchase orders for approved accounts. We can also discuss payment terms for large-volume refurbishment projects.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BOTTOM CTA ═══════════ -->
+<section class="sec bcta-section">
+  <div class="cnt">
+    <div class="bcta-card rv up">
+      <h2 class="serif">Prefer to <span class="grad">talk</span>?</h2>
+      <p>Our team is ready to help with any questions or requirements. Real conversations, real solutions.</p>
+      <div class="bcta-btns">
+        <a href="tel:0114731467" class="bpri">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          Call (011) 473-1467
+        </a>
+        <a href="#" class="bout">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Request Callback
+        </a>
+      </div>
+      <p class="bcta-meta">Or email qfaltain@cqcbusinessolutions.co.za · WhatsApp 082 567 5710</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="fgrid">
+    <div class="fbrand">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="lmark">CQC</div>
+        <span style="font-family:'Libre Baskerville',serif;font-size:1.1rem;">Business Solutions</span>
+      </div>
+      <p>Premium workspace furniture and complete lifecycle solutions for South African businesses. Proudly black-owned. Level 1 B-BBEE.</p>
+      <div class="fbadges">
+        <div class="fbadge">🇿🇦 Proudly SA</div>
+        <div class="fbadge" style="background:rgba(56,189,248,.1);border-color:rgba(56,189,248,.22);color:#7dd3fc;">Level 1 B-BBEE</div>
+      </div>
+    </div>
+    <div class="fcol">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Catalogue</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Refurbishment</a></li>
+        <li><a href="#">Chair Components</a></li>
+        <li><a href="#">Rental Solutions</a></li>
+        <li><a href="#">Transportation</a></li>
+        <li><a href="#">Training</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5>Contact</h5>
+      <div class="fcontact-row">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Johannesburg, Gauteng,<br>South Africa</span>
+      </div>
+      <div class="fcontact-row">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        <span>(011) 473-1467</span>
+      </div>
+      <div class="fcontact-row">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>qfaltain@cqcbusinessolutions.co.za</span>
+      </div>
+      <div class="fcontact-row">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        <span>082 567 5710 (WhatsApp)</span>
+      </div>
+    </div>
+  </div>
+  <div class="fbot">
+    <p>© 2025 CQC Business Solutions. All rights reserved.</p>
+    <p>Privacy Policy · Terms of Service</p>
+  </div>
+</footer>
+
+<script>
+/* ── Cursor ── */
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top  = e.clientY + 'px';
+});
+document.querySelectorAll('a, button, input, select, textarea, .qcard, .pcard, .fitem-btn, .province').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.classList.add('big'));
+  el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+});
+
+/* ── Header ── */
+const hdr = document.getElementById('hdr');
+const ln  = document.getElementById('ln');
+const ls  = document.getElementById('ls');
+const mbb = document.getElementById('mobBtn');
+window.addEventListener('scroll', () => {
+  const s = window.scrollY > 60;
+  hdr.classList.toggle('on', s);
+  ln.style.color = s ? 'var(--ink)' : 'white';
+  ls.style.color = s ? '#9ca3af' : 'rgba(255,255,255,.45)';
+  mbb.style.color = s ? '#374151' : 'white';
+});
+
+/* ── Mobile menu ── */
+function openMob()  { document.getElementById('mobM').classList.add('open');  document.body.style.overflow='hidden'; }
+function closeMob() { document.getElementById('mobM').classList.remove('open'); document.body.style.overflow=''; }
+function handleResize() { mbb.style.display = window.innerWidth < 768 ? 'block' : 'none'; }
+window.addEventListener('resize', handleResize); handleResize();
+
+/* ── Hero bg ── */
+setTimeout(() => document.getElementById('hrBg').classList.add('rdy'), 100);
+
+/* ── File upload ── */
+function triggerFile() { document.getElementById('fileInput').click(); }
+function showFiles(input) {
+  const names = Array.from(input.files).map(f => f.name).join(', ');
+  const el = document.getElementById('fileNames');
+  el.textContent = '📎 ' + names;
+  el.style.display = 'block';
+}
+
+/* Drag & drop */
+const fdrop = document.getElementById('fdrop');
+fdrop.addEventListener('dragover', e => { e.preventDefault(); fdrop.style.borderColor='rgba(249,115,22,.7)'; fdrop.style.background='rgba(249,115,22,.06)'; });
+fdrop.addEventListener('dragleave', () => { fdrop.style.borderColor=''; fdrop.style.background=''; });
+fdrop.addEventListener('drop', e => {
+  e.preventDefault(); fdrop.style.borderColor=''; fdrop.style.background='';
+  const dt = e.dataTransfer; if (!dt.files.length) return;
+  const el = document.getElementById('fileNames');
+  el.textContent = '📎 ' + Array.from(dt.files).map(f=>f.name).join(', ');
+  el.style.display='block';
+});
+
+/* ── Form submit ── */
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
+/* ── SA Map tooltip ── */
+const tip = document.getElementById('mapTip');
+const provinces = document.querySelectorAll('.province');
+provinces.forEach(p => {
+  p.addEventListener('mouseenter', function(e) {
+    document.getElementById('tipTitle').textContent = this.dataset.name;
+    document.getElementById('tipRole').textContent  = this.dataset.role;
+    document.getElementById('tipNum').textContent   = this.dataset.num;
+    tip.classList.add('show');
+    positionTip(e);
+    this.classList.add('active');
+  });
+  p.addEventListener('mousemove', positionTip);
+  p.addEventListener('mouseleave', function() {
+    tip.classList.remove('show');
+    this.classList.remove('active');
+  });
+});
+function positionTip(e) {
+  const wrap = document.querySelector('.map-wrap');
+  const rect  = wrap.getBoundingClientRect();
+  let x = e.clientX - rect.left + 14;
+  let y = e.clientY - rect.top  - 60;
+  if (x + 170 > rect.width) x -= 180;
+  if (y < 0) y = 8;
+  tip.style.left = x + 'px';
+  tip.style.top  = y + 'px';
+}
+
+/* ── FAQ Accordion ── */
+function toggleFaq(btn) {
+  const item = btn.closest('.fitem');
+  const isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.fitem').forEach(f => f.classList.remove('open'));
+  // Open clicked
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ── Scroll reveal ── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    el.style.animationDelay = el.dataset.delay || '0s';
+    if (el.classList.contains('up'))    el.classList.add('up');
+    if (el.classList.contains('left'))  el.classList.add('left');
+    if (el.classList.contains('right')) el.classList.add('right');
+    ro.unobserve(el);
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.rv').forEach(el => ro.observe(el));
+
+/* ── Mouse parallax on hero chips ── */
+document.addEventListener('mousemove', e => {
+  const mx = (e.clientX / window.innerWidth  - .5) * 12;
+  const my = (e.clientY / window.innerHeight - .5) * 8;
+  document.querySelectorAll('.hchip').forEach((c, i) => {
+    const d = i % 2 === 0 ? 1 : -1;
+    c.style.transform = `translate(${mx * d}px, ${my * d}px)`;
+  });
+});
+</script>
 </body>
 </html>
